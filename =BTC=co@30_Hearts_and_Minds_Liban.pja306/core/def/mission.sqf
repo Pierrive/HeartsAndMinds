@@ -500,9 +500,9 @@ btc_type_air = _allclasse select 9;
 //Sometimes you need to add units: + ["Blabla","moreBlabla"];
 switch (_p_en) do {
     case "UK3CB_TKA_O" : {
-		btc_type_mg = btc_type_mg - ["UK3CB_TKA_O_PKM_nest_des", "UK3CB_TKA_O_PKM_nest"];
-        btc_type_gl = btc_type_gl + ["UK3CB_TKA_O_D30", "UK3CB_TKA_O_Igla_AA_pod", "UK3CB_TKA_O_PKM_nest_des", "UK3CB_TKA_O_PKM_nest", "UK3CB_TKA_O_ZU23"] - ["UK3CB_TKA_O_2b14_82mm", "UK3CB_TKA_O_DSHKM", "UK3CB_TKA_O_RIF_1", "UK3CB_TKA_O_DSHkM_Mini_TriPod", "UK3CB_TKA_O_RIF_1", "isc_saa_ags30_o", "isc_saa_rifleman_o", "isc_saa_dshkm_o", "isc_saa_rifleman_o", "isc_saa_dshkm_minitripod_o", "isc_saa_rifleman_o", "UK3CB_TKP_O_DSHkM_Mini_TriPod", "UK3CB_TKP_O_RIF_1", "UK3CB_TKP_O_DSHKM", "UK3CB_TKP_O_RIF_1"];
-        btc_type_units = btc_type_units - ["isc_saa_rifleman_ags30_o","isc_saa_rifleman_podnos_o","UK3CB_TKA_O_STATIC_TRI_PODNOS","UK3CB_TKA_O_STATIC_GUN_PODNOS"];
+		btc_type_mg = btc_type_mg + ["UK3CB_TKA_O_PKM_nest_des", "UK3CB_TKA_O_PKM_nest"];
+        btc_type_gl = btc_type_gl + ["UK3CB_TKA_O_D30", "UK3CB_TKA_O_Igla_AA_pod", "UK3CB_TKA_O_ZU23", "UK3CB_TKA_O_2b14_82mm"] - ["UK3CB_TKA_O_AGS", "isc_saa_ags30_o"];
+        btc_type_units = btc_type_units - ["isc_saa_rifleman_ags30_o","isc_saa_rifleman_podnos_o"];
 	};
     case "OPF_G_F" : {
         btc_type_motorized = btc_type_motorized + ["I_Truck_02_transport_F", "I_Truck_02_covered_F"];
