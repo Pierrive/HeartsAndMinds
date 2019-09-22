@@ -1,0 +1,11 @@
+//inventory vehicule
+player addaction ["<t size='1' shadow='2' color='#a57100'>Ajouter Item Dans Vehicule (Arsenal BIS)</t>", {[Pierrive_server] execVM "scripts\BisAddInventoryVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Ajouter Item Dans Vehicule (Arsenal ACE)</t>", {[Pierrive_server] execVM "scripts\AceAddInventoryVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Repair Vehicle</t>", {[Pierrive_server] execVM "scripts\repair.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Enlever tous les Items du Cargo</t>", {[Pierrive_server] execVM "scripts\clearItemVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server) < 10)"];
+
+//inventory vehicule
+player addaction ["<t size='1' shadow='2' color='#a57100'>Ajouter Item Dans Vehicule (Arsenal BIS)</t>", {[Pierrive_server_1] execVM "scripts\BisAddInventoryVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server_1) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Ajouter Item Dans Vehicule (Arsenal ACE)</t>", {[Pierrive_server_1] execVM "scripts\AceAddInventoryVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server_1) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Repair Vehicle</t>", {[Pierrive_server_1] execVM "scripts\repair.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server_1) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#a57100'>Enlever tous les Items du Cargo</t>", {[Pierrive_server_1] execVM "scripts\clearItemVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_server_1) < 10)"];
