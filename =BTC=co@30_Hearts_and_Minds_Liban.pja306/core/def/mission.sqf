@@ -191,7 +191,7 @@ if (isServer) then {
     btc_type_medicals = _allclass select {_x isKindOf "MedicalGarbage_01_Base_F"};
 
     //BTC Vehicles in missions.sqm
-    btc_vehicles = [btc_veh_1, btc_veh_2, btc_veh_3, btc_veh_4, btc_veh_5, btc_veh_6, btc_veh_7, btc_veh_8, btc_veh_9, btc_veh_10, btc_veh_11, btc_veh_12, btc_veh_13, btc_veh_14, btc_veh_15, btc_veh_16, btc_veh_17, btc_veh_18, btc_veh_19];
+    btc_vehicles = [btc_veh_1, btc_veh_2, btc_veh_3, btc_veh_4, btc_veh_5, btc_veh_6, btc_veh_7, btc_veh_8, btc_veh_9, btc_veh_10, btc_veh_11, btc_veh_12, btc_veh_13, btc_veh_14, btc_veh_15, btc_veh_16, btc_veh_17, btc_veh_18, btc_veh_19, btc_veh_20, btc_veh_21, btc_veh_22, btc_veh_23];
     btc_helo = [btc_helo_1];
 
     // The two arrays below are prefixes of buildings and their multiplier.
@@ -239,9 +239,8 @@ _allclasse = [[_p_civ_veh]] call btc_fnc_civ_class;
 btc_civ_type_veh = _allclasse select 2;
 btc_civ_type_boats = _allclasse select 1;
 
-btc_w_civs = ["V_Rangemaster_belt", "arifle_Mk20_F", "30Rnd_556x45_Stanag", "hgun_ACPC2_F", "9Rnd_45ACP_Mag"];
-btc_g_civs = ["HandGrenade", "MiniGrenade", "ACE_M84", "ACE_M84"];
-
+btc_w_civs = ["UK3CB_V_Pouch","rhs_vest_commander","rhs_6sh46","rhs_vest_pistol_holster","rhs_weap_akm","rhs_30Rnd_762x39mm_bakelite","rhs_weap_ak74","rhs_30Rnd_545x39_7N6M_AK","rhs_weap_ak74n_2","rhs_30Rnd_545x39_7N6M_AK","rhs_weap_aks74u","rhs_30Rnd_545x39_7N6M_AK","rhs_weap_6p53","hgun_Pistol_01_F","rhs_mag_9x19_17","rhs_weap_rsp30_red","rhs_weap_savz61_folded"];
+btc_g_civs = ["ACE_M14","ALiVE_Handgrenade_bottle","ALiVE_Handgrenade_can","rhs_grenade_sthgr43_mag","ALiVE_Handgrenade_stone","rhs_mag_m69"];
 
 //Cache
 btc_cache_type = ["Box_East_Ammo_F"];
@@ -525,7 +524,7 @@ btc_rep_bonus_mil_killed = 0.25;
 btc_rep_malus_civ_hd = - 20;
 btc_rep_malus_civ_killed = - 20;
 btc_rep_malus_civ_firenear = - 5;
-btc_rep_malus_player_respawn = - 1;
+btc_rep_malus_player_respawn = - 10;
 btc_rep_malus_veh_killed = - 25;
 btc_rep_malus_building_damaged = - 5;
 btc_rep_malus_building_destroyed = - 10;
