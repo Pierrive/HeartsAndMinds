@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=7124;
+		nextID=7132;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3340;
+		nextID=3363;
 	};
 	class Camera
 	{
-		pos[]={1153.0258,367.78784,1345.783};
-		dir[]={-0.15072437,-0.27483851,-0.94964516};
-		up[]={-0.043086413,0.96147829,-0.27147189};
-		aside[]={-0.98767465,1.7601997e-007,0.15675919};
+		pos[]={1350.3517,289.78687,1244.6819};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -72830,6 +72830,24 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"ARRAY"
+						};
+					};
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnButton";
 			expression="true";
 			class Value
@@ -72844,24 +72862,6 @@ class CustomAttributes
 						};
 					};
 					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnTemplates";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"ARRAY"
-						};
-					};
 				};
 			};
 		};
@@ -108495,13 +108495,13 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={1350.3517,264.78687,1269.6819};
+				position[]={1350.3521,264.7869,1269.682};
 				angles[]={0,4.7780833,0};
 			};
 			name="Pierrive_server";
 			id=1999;
 			type="Logic";
-			atlOffset=0.9329834;
+			atlOffset=0.93301392;
 		};
 		class Item129
 		{
@@ -117596,8 +117596,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1863.5698,260.91165,1077.8214};
-				angles[]={0.067214772,5.8413734,6.2687502};
+				position[]={1864.8813,260.90717,1077.6071};
+				angles[]={0.067214772,5.8517351,6.2687502};
 			};
 			side="Empty";
 			flags=4;
@@ -117636,8 +117636,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1871.0372,260.69641,1080.1504};
-				angles[]={0.035242744,3.0196066,0.028449366};
+				position[]={1872.7698,260.75134,1079.9938};
+				angles[]={0.048530437,3.0196066,0.028449366};
 			};
 			side="Empty";
 			flags=4;
@@ -190659,6 +190659,7 @@ class Mission
 			};
 			id=6991;
 			type="UK3CB_ANA_B_Ural_Ammo";
+			atlOffset=-0.014343262;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -190774,6 +190775,7 @@ class Mission
 			};
 			id=6992;
 			type="UK3CB_ANA_B_Ural_Repair";
+			atlOffset=-0.0070800781;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -190870,6 +190872,7 @@ class Mission
 			};
 			id=6993;
 			type="UK3CB_ANA_B_Ural_Fuel";
+			atlOffset=-0.032928467;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -196651,7 +196654,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="300";
+							value="120";
 						};
 					};
 				};

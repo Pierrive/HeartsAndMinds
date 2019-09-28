@@ -68,13 +68,13 @@ private _allPlayers = call BIS_fnc_listPlayers;
 _car = 0;
 _tank = 0;
 _chopper = 0;
-_plane = false;
+btc_patrol_plane = false;
 
 {
 	if ((vehicle _x) isKindOf "Car") then {_car = _car + 1};
 	if ((vehicle _x) isKindOf "Tank") then {_tank = _tank + 1};
 	if ((vehicle _x) isKindOf "Helicopter") then {_chopper = _chopper + 1};
-	if ((vehicle _x) isKindOf "Plane") then {_plane = true};
+	if ((vehicle _x) isKindOf "Plane") then {btc_patrol_plane = true};
 } foreach _allPlayers;
 
 _ratioTank = _tank / (count _allPlayers);
@@ -83,9 +83,7 @@ _ratioChopper = _chopper / (count _allPlayers);
 
 if (_ratioTank > 0.7) then {_random = 2};
 if (_ratioCar > 0.5) then {_random = 2};
-
-if (_plane) then {_random = 3};
-if (_ratioChopper > 0.8) then {_random = 3};
+if (_ratioChopper > 0.7) then {_random = 3};
 
 //Creating units
 private _group = createGroup [btc_enemy_side, true];
@@ -93,6 +91,30 @@ btc_patrol_active pushBack _group;
 _group setVariable ["no_cache", true];
 _group setVariable ["btc_patrol_id", btc_military_id, btc_debug];
 btc_military_id = btc_military_id + 1;
+
+if (btc_patrol_plane && ((count btc_patrol_plane_active) < 3)) then {
+	[_pos,_start_city,_active_city,_area,_pos_isWater] spawn {
+		hint "spawn avion";
+		params ["_pos","_start_city","_active_city","_area","_pos_isWater"];
+		private _groupPlane = createGroup [btc_enemy_side, true];
+		btc_patrol_plane_active pushBack _groupPlane;
+
+	    _veh_type_plane = selectRandom ["UK3CB_TKA_O_L39_AA", "UK3CB_TKA_O_L39_CAS", "UK3CB_TKA_O_L39_PYLON", "UK3CB_TKA_O_Antonov_AN2_Armed", "UK3CB_TKA_O_Su25SM", "UK3CB_TKA_O_Su25SM_CAS", "UK3CB_TKA_O_Su25SM_Cluster", "UK3CB_TKA_O_Su25SM_KH29"];
+        _pos = [_pos, 0, 500, 13, false] call btc_fnc_findsafepos;
+		private _plane = [_groupPlane, _pos, _veh_type_plane] call btc_fnc_mil_createVehicle;
+		_plane setVariable ["btc_crews", _groupPlane];
+
+		private _fuelEh = _plane addEventHandler ["Fuel", btc_fnc_patrol_eh];
+		_plane setVariable ["btc_eh", [_fuelEh]];
+		
+		[_groupPlane, [_start_city, _active_city], _area, _pos_isWater] call btc_fnc_patrol_init;
+
+		//Check if HC is connected
+		if !((entities "HeadlessClient_F") isEqualTo []) then {
+			[_groupPlane] call btc_fnc_set_groupowner;
+		};
+	};
+};
 
 switch (_random) do {
     case 1 : {
