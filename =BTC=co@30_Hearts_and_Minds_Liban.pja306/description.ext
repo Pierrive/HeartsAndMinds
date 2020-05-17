@@ -54,12 +54,6 @@ class Extended_InitPost_EventHandlers {
     };
 };
 
-class Extended_Init_EventHandlers {
-	class Man {
-		init = "_this call (compile preprocessFileLineNumbers 'scripts\addEhCivAlive.sqf')";
-	};
-};
-
 // Disable BI wreck system (H&M handle it internally)
 wreckManagerMode = 0;
 corpseManagerMode = 0;
