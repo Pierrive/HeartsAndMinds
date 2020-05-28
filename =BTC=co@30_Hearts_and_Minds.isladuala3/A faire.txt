@@ -1,0 +1,73 @@
+enlever civil tent medic et soins unconsious //ok
+mettre marqueur inconsious ace // ok
+mettre des caisse à hélitreuiller //ok ,
+corriger les CAS //ok
+FAIRE ZONE DE BRIEFING //ok
+PILOTE EN PYJAMa //ok
+augmenter le temps de save alive //ok
+RAJOUTER SHILKA ENNEMIS //ok
+RAJOUTER UN SYST7ME DE POINT //ok
+ENELEVER SPAWN STATIC //ok
+corriger les uniform //ok
+trouver un moyen pour savoir les zone qui reste //ok
+QGRQNDIR WONE DE NETTOYQGE H2LICO //ok
+RQJOUTER UNE POUBELLE //ok
+baisser ambiance //ok
+mettre en place un drone de localisation //ok
+recoriger skill // ok
+changer marker aérien et type //ok
+enlever container alive module transport //ok
+accélération temps nuit // ok
+
+mettre en place un hélico pour soins /ok
+trouver un moyen de voir notre réputation /ok
+
+corriger medvac // ok
+mettre slinghoad sur huron //ok
+_ correction: Possibilité de spawn que des véhicules Bluefor.//ok
+voir pour HC sur unit alive // ok
+
+
+_markers_properties = profileNamespace getVariable ["btc_hm_lingor3_markers", []];
+ambianceBase setVariable ["local_marker", _markers_properties,true];
+
+private _markers_properties_local = ambianceBase getVariable "local_marker";
+_countMarker = count _markers_properties_local;
+_markers_properties_local_one = _markers_properties_local select 1;
+
+_markerPos = _markers_properties_local_one select 1; 
+_markerNameVar = "markerLocal_124";
+_marker = createMarkerLocal [_markerNameVar, _markerPos];
+(str [_marker,_markerPos]) remoteExec ["hint", 0];
+_marker setMarkerText (_markers_properties_one select 0); 
+_marker setMarkerColor (_markers_properties_one select 2); 
+_marker setMarkerType (_markers_properties_one select 3); 
+_marker setMarkerSize (_markers_properties_one select 4); 
+_marker setMarkerAlpha (_markers_properties_one select 5); 
+_marker setMarkerBrush (_markers_properties_one select 6); 
+_marker setMarkerDir (_markers_properties_one select 7); 
+_marker setMarkerShape (_markers_properties_one select 8); 
+
+for "_i" from 0 to _countMarker do { 
+	_markers_properties_one = _markers_properties_local select _i;
+	(str _markers_properties_one) remoteExec ["hint", 0];
+	_markerPos = _markers_properties_one select 1; 
+	_markerNameVar = format ["markerLocal_%1", _i];
+	_marker = createMarkerLocal [_markerNameVar, _markerPos];  (str _marker) remoteExec ["hint", 0]; 
+    _marker setMarkerText (_markers_properties_one select 0); 
+    _marker setMarkerColor (_markers_properties_one select 2); 
+    _marker setMarkerType (_markers_properties_one select 3); 
+    _marker setMarkerSize (_markers_properties_one select 4); 
+    _marker setMarkerAlpha (_markers_properties_one select 5); 
+    _marker setMarkerBrush (_markers_properties_one select 6); 
+    _marker setMarkerDir (_markers_properties_one select 7); 
+    _marker setMarkerShape (_markers_properties_one select 8); 
+};
+
+
+_markers_properties = ambianceBase getVariable "local_marker"; (str _markers_properties) remoteExec ["hint", 0];
+
+_markers_properties = profileNamespace getVariable ["btc_hm_lingor3_markers", []];
+ambianceBase setVariable ["local_marker", _markers_properties,true];
+
+	["""",[4124.41,8649.7,0],""ColorBlack"","""",[1,1],1,""Solid"",0,""POLYLINE""];
