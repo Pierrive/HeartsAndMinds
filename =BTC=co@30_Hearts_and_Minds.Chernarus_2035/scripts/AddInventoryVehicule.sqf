@@ -14,10 +14,10 @@ removeVest player;
 removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
-player forceAddUniform "VSM_OGA_Camo";
+player forceAddUniform "U_Rangemaster";
 player addVest "V_Safety_yellow_F";
-player addBackpack "R3F_sac_vie_TAN";
-player addHeadgear "R3F_Bandana_TAN";
+player addBackpack "B_Carryall_mcamo";
+player addHeadgear "H_Cap_headphones";
 
 sleep 0.5;
 
@@ -36,13 +36,25 @@ if (_count == 1) exitwith {
 
 	waitUntil {isnull (uinamespace getvariable "RSCDisplayArsenal")};
 
-	_allitems = backpackItems player;
+	private _allitems = backpackItems player;
+	private _pWeap = primaryWeapon player;
+	private _itemOnPrimary = primaryWeaponItems player;
+	private _secondaryWeapon = secondaryWeapon player;
+	
+	if (count _allitems > 0) then {
+		{
+			_nearestvehicle addItemCargoGlobal [_x, 1];
+		} foreach _allitems;
+	};
+	
+	if !(_pWeap isEqualTo "") then {_nearestvehicle addWeaponCargoGlobal [_pWeap, 1]};
+	if !(_secondaryWeapon isEqualTo "") then {_nearestvehicle addWeaponCargoGlobal [_secondaryWeapon, 1]};
+	if !((_itemOnPrimary select 0) isequalto "") then {_nearestvehicle addItemCargoGlobal [(_itemOnPrimary select 0), 1]};
+	if !((_itemOnPrimary select 1) isequalto "") then {_nearestvehicle addItemCargoGlobal [(_itemOnPrimary select 1), 1]};
+	if !((_itemOnPrimary select 2) isequalto "") then {_nearestvehicle addItemCargoGlobal [(_itemOnPrimary select 2), 1]};
+	if !((_itemOnPrimary select 3) isequalto "") then {_nearestvehicle addItemCargoGlobal [(_itemOnPrimary select 3), 1]};
+	
+	sleep 0.5;
 
-	{
-		_nearestvehicle addItemCargoGlobal [_x, 1];
-	} foreach _allitems;
+	player setUnitLoadout (player getVariable["Saved_Loadout",[]]);
 };
-
-sleep 0.5;
-
-player setUnitLoadout (player getVariable["Saved_Loadout",[]]);

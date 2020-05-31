@@ -39,7 +39,7 @@ btc_custom_arsenal = [_weapons, _magazines, _items, _backpacks];
     Here you can specify which equipment is loaded on player connection.
 */
 
-private _radio = ["tf_anprc152", "ACRE_PRC148"] select (isClass(configFile >> "cfgPatches" >> "acre_main"));
+private _radio = ["tf_anprc152", "ACRE_PRC152"] select (isClass(configFile >> "cfgPatches" >> "acre_main"));
 //Array of colored item: 0 - Desert, 1 - Tropic, 2 - Black, 3 - forest
 private _uniforms = ["U_B_CombatUniform_mcam", "U_B_CTRG_Soldier_F", "U_B_CTRG_1", "U_B_CombatUniform_mcam_wdl_f"];
 private _vests = ["V_PlateCarrierH_CTRG", "V_PlateCarrier2_rgr_noflag_F", "V_PlateCarrierH_CTRG", "V_PlateCarrier2_wdl"];

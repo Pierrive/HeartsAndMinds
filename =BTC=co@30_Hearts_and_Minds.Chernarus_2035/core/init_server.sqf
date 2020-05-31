@@ -51,7 +51,7 @@ for "_i" from 0 to 5 do {
 };
 
 //marker unconsoious
-_null = [] execVM "scripts\markerAce.sqf";
+_null = [] execVM "scripts\InfoDownAce.sqf";
 
 //spawn ammobox
 [MunitionHeli] spawn {_object = _this select 0; [_object] execVM "scripts\ammoboxScript.sqf";};

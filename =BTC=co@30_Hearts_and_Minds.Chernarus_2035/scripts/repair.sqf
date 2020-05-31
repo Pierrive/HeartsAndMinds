@@ -6,8 +6,7 @@ _nearestvehicle = (nearestObjects [_truck, ["Car","Armored","Air","Tank"], 10] s
 _nearestvehicles = nearestObjects [_truck, ["Car","Armored","Air","Tank"], 10];
 _count = count _nearestvehicles;
 _fonte = [(str missionConfigFile), 0, -15] call BIS_fnc_trimString;
-_repair = _fonte + "sound\repair.ogg";
-_kk = 0;
+_repair = _fonte + "core\sounds\repair.ogg";
 
 if (_count == 0) exitwith {hint "Aucun véhicule à proximité"};
 
@@ -23,9 +22,9 @@ if (_count == 1) exitwith {
 			playSound3D [_repair, _truck, false, getPosASL _truck, 3, 1, 100];
 			sleep 7;
 			_nearestvehicle setDamage 0;
-			_kk = 0;
-			waituntil {_kk == 0};
-			hint "Réparation terminée";
+			_nearestvehicle setVehicleAmmo 1;
+			_nearestvehicle setFuel 1;
+			hint "Réparation et Réarmement terminés";
 	};
 		
 	if (_nearestvehicle isKindOf "Car") then {
@@ -35,9 +34,9 @@ if (_count == 1) exitwith {
 			playSound3D [_repair, _truck, false, getPosASL _truck, 3, 1, 100];
 			sleep 7;
 			_nearestvehicle setDamage 0;
-			_kk = 0;
-			waituntil {_kk == 0};
-			hint "Réparation terminée";
+			_nearestvehicle setVehicleAmmo 1;
+			_nearestvehicle setFuel 1;
+			hint "Réparation et Réarmement terminés";
 	};
 	
 	if (_nearestvehicle isKindOf "Armored") then {
@@ -51,9 +50,9 @@ if (_count == 1) exitwith {
 			playSound3D [_repair, _truck, false, getPosASL _truck, 3, 1, 100];
 			sleep 7;
 			_nearestvehicle setDamage 0;
-			_kk = 0;
-			waituntil {_kk == 0};
-			hint "Réparation terminée";
+			_nearestvehicle setVehicleAmmo 1;
+			_nearestvehicle setFuel 1;
+			hint "Réparation et Réarmement terminés";
 	};
 	
 	if (_nearestvehicle isKindOf "Air") then {
@@ -69,8 +68,9 @@ if (_count == 1) exitwith {
 			playSound3D [_repair, _truck, false, getPosASL _truck, 3, 1, 100];
 			sleep 7;
 			_nearestvehicle setDamage 0;
-			_kk = 0;
-			waituntil {_kk == 0};
-			hint "Réparation terminée";
+			_nearestvehicle setVehicleAmmo 1;
+			_nearestvehicle setFuel 1;
+			hint "Réparation et Réarmement terminés";
 	};
 };
+
