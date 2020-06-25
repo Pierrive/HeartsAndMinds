@@ -1,5 +1,5 @@
 
-btc_version = [1, 20, 4];
+btc_version = [1, 20, 6];
 diag_log format (["=BTC= HEARTS AND MINDS VERSION %1.%2.%3"] + btc_version);
 
 //Param
@@ -263,7 +263,7 @@ if (isServer) then {
 
     //BTC Vehicles in missions.sqm
     btc_vehicles = [btc_veh_1, btc_veh_2, btc_veh_3, btc_veh_4, btc_veh_5, btc_veh_6, btc_veh_7, btc_veh_8, btc_veh_9, btc_veh_10, btc_veh_11, btc_veh_12, btc_veh_13, btc_veh_14, btc_veh_15, btc_veh_16, btc_veh_17, btc_veh_18];
-    btc_helo = [btc_helo_1];
+    btc_helo = [btc_helo_1,btc_helo_2,btc_helo_3,btc_helo_4];
 
     // The two arrays below are prefixes of buildings and their multiplier.
     // They will multiply the values of btc_rep_malus_building_destroyed and btc_rep_malus_building_damaged,

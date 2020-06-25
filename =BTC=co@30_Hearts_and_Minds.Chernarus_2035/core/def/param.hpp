@@ -177,7 +177,7 @@ class Params {
         title = __EVAL(format ["      %1", localize "STR_BTC_HAM_PARAM_CACHE_DEADINFO"]);
         values[]={0,10,20,30,40,50,60,70,80,90,100};
         texts[]={"100 %","90 %","80 %","70 %","60 %","50 %","40 %","30 %","20 %","10 %","0 %"};
-        default = 70;
+        default = 40;
     };
     class btc_p_medical_title { // << Medical options >>
         title = $STR_BTC_HAM_MEDI_TITLE;
