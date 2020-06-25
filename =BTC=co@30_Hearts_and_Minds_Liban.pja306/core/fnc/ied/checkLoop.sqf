@@ -28,7 +28,11 @@ Author:
     if (_city getVariable ["active", false]) exitWith {
         {
             _x params ["_wreck", "_type", "_ied"];
-
+			
+			if (!isNull _wreck && {alive _wreck}) then {
+				deleteVehicle _ied;
+			};
+			
             if (!isNull _ied && {alive _ied}) then {
                 {
                     if (side _x isEqualTo btc_player_side && {speed _x > 5 || vehicle _x != _x}) then {
