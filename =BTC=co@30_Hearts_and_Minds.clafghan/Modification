@@ -1,0 +1,78 @@
+Corriger Arsenal sur la caisse d'héliportage
+Corriger la limitation du zeus : Ajouter le fait de modifier la météo, date et heure
+Ajout de nouvelle MG //ok
+correction : Bomber que l'on détect pas
+correction : tenue de respawn
+correction : simplex logistique (arsenal et quad)
+Ajout : sauvegarde des ca 3  les radio //ok
+Hexagone à enlever // ok
+enlever les nom du sharktack // OK
+Regarder le médical bot // A voir
+Enlever Fog // ok
+rajouter des zone de d'IA
+Enlever IED sur les dolline // A voir
+Corriger la détection du suicide Bomber // avoir
+CTAB par rapport au sharctak //A voir
+rajouter propre housse mortuaire sur civil // non
+traité en priorité le mec inconscient //ok
+Mettre point sur carte medic et réparation réaprovisionnement // ok
+Changer les Avions // ok
+largage nacelle pour hélitreuillage
+voir pour le respawn d'équipement // ok
+rajouter le casque pilote et rajouter viseur. //ok
+
+Faire des test poru le slingloading
+Enable rigging on almost anything!
+_cargo setVariable ["amp_slingload_isRiggingEnabled", true, true];
+
+Script custom sling points on your cargo.
+_cargo setVariable ["amp_slingload_liftPoints", [[x1,y1,z1], [x2,y2,z2]...], true];
+
+O_AMF_A_E_B_support_F
+O_AMF_A_E_B_weapon_F
+[
+	"B_Quadbike_01_F",
+	["B_supplyCrate_F","Caisse Avec Arsenal","\A3\Ui_f\data\IGUI\Cfg\simpleTasks\types\rearm_ca.paa",{clearItemCargoGlobal _this; clearMagazineCargoGlobal _this; clearWeaponCargoGlobal _this; clearBackpackCargoGlobal _this;}],
+	["ACE_fastropingSupplyCrate","Caisse Pour Extraction","\A3\Ui_f\data\IGUI\Cfg\simpleTasks\types\rearm_ca.paa",{_this addBackpackCargoGlobal ["O_AMF_A_E_B_support_F", 4]; _this addBackpackCargoGlobal ["O_AMF_A_E_B_weapon_F", 4];}]
+]
+
+if (typeOf _this == "B_supplyCrate_F") then {   
+	[_this, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_BIS", "['Open', [!(btc_p_arsenal_Restrict isEqualTo 1), _this select 0]] call bis_fnc_arsenal;"]] remoteExec ["addAction", 0,true];   
+	[_this, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_ACE", {params ["_target", "_caller", "_actionId", "_arguments"]; [_target, player] call ace_arsenal_fnc_openBox;}]] remoteExec ["addAction", 0,true];   
+	if !(btc_p_arsenal_Restrict isEqualTo 0) then {[_this, btc_p_arsenal_Type, btc_p_arsenal_Restrict, btc_custom_arsenal] call btc_fnc_arsenal_data;};  
+};
+
+if (typeOf _this == "B_supplyCrate_F") then {      
+	[cursorTarget, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_BIS", "['Open', [!(btc_p_arsenal_Restrict isEqualTo 1), _this select 0]] call bis_fnc_arsenal;"]] remoteExec ["addAction", 0,true];      
+	[cursorTarget, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_ACE", {params ["_target", "_caller", "_actionId", "_arguments"]; [_target, player] call ace_arsenal_fnc_openBox;}]] remoteExec ["addAction", 0,true];      
+	if !(btc_p_arsenal_Restrict isEqualTo 0) then {[cursorTarget, btc_p_arsenal_Type, btc_p_arsenal_Restrict, btc_custom_arsenal] remoteExecCall ["btc_fnc_arsenal_data", 0, true];};
+	[cursorTarget, true, [0,1.5,0.8], 0] call ace_dragging_fnc_setCarryable;
+};
+	[_this, btc_p_arsenal_Type, btc_p_arsenal_Restrict, btc_custom_arsenal] call btc_fnc_arsenal_data;};    
+if (typeOf _this == "ACE_fastropingSupplyCrate") then {       
+	[_this, true, [0,1.5,0.8], 0] call ace_dragging_fnc_setCarryable;
+};
+
+if (typeOf _this == "B_supplyCrate_F") then {      
+	[_this, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_BIS", "['Open', [!(btc_p_arsenal_Restrict isEqualTo 1), _this select 0]] call bis_fnc_arsenal;"]] remoteExec ["addAction", 0,true];      
+	[_this, [localize "STR_BTC_HAM_ACTION_ARSENAL_OPEN_ACE", {params ["_target", "_caller", "_actionId", "_arguments"]; [_target, player] call ace_arsenal_fnc_openBox;}]] remoteExec ["addAction", 0,true];      
+	if !(btc_p_arsenal_Restrict isEqualTo 0) then {[_this, btc_p_arsenal_Type, btc_p_arsenal_Restrict, btc_custom_arsenal] remoteExecCall ["btc_fnc_arsenal_data", 0, true];};        
+	[_this, true, [0,1.5,0.8], 0] call ace_dragging_fnc_setCarryable;  
+};    
+if (typeOf _this == "ACE_fastropingSupplyCrate") then {          
+	[_this, true, [0,1.9,0.8], 0] call ace_dragging_fnc_setCarryable;  
+};
+
+[this, true, [0,0,1], 0] call ace_dragging_fnc_setCarryable;
+
+[_this, true] call ace_arsenal_fnc_initBox;
+/////////////////// 22222222222222222222222 /////////////////////
+Corriger le fait que le ACE arsenal ne s'ouvre pas caisse //ok
+Remettre en place l'auto loadout //ok
+enlever l'option créer Zeus //ok
+Corriter IRMA TWO en double et modifier les nom de groupe //ok
+Enlever Caisse escalier HQ //ok
+
+Arsenal
+Marqueur
+Hélico
