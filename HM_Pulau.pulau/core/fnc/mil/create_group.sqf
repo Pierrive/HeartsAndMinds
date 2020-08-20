@@ -51,22 +51,15 @@ _groups pushBack _group;
 // Handle different case of wp
 switch (true) do {
     case (_wp <= _wp_house_probability) : {
-		for "_i" from 1 to _n do {
-			private _restUnit = _n - _i;
-			([_rpos, _n] call btc_fnc_mil_getBuilding) params ["_n", "_structure"];
-			if (_structure isEqualTo "") exitWith {
-				if (_restUnit > 0) then {[_city, _area, _restUnit, _wp_sentry_probability, _type_divers, _type_units, _p_sea, _enemy_side, _wp_ratios] call btc_fnc_mil_create_group;};
-			};
-			
+        ([_rpos, _n] call btc_fnc_mil_getBuilding) params ["_n", "_structure"];
+        if (_structure isEqualTo "") exitWith {
+            [_city, _area, _n, _wp_sentry_probability, _type_divers, _type_units, _p_sea, _enemy_side, _wp_ratios] call btc_fnc_mil_create_group;
+        };
+        for "_i" from 1 to _n do {
             private _grp = createGroup _enemy_side;
             [_grp, _rpos, 1] call btc_fnc_mil_createUnits;
             _grp setVariable ["btc_inHouse", typeOf _structure];
-			if ((random 1) > 0.49) then {
-				[_grp, _structure] call btc_fnc_house_addWP;
-			} else {
-				private _buildPos = selectRandom (_structure buildingPos -1);
-				{_x setposATL _buildPos; _x forceSpeed 0; _x setUnitPos "UP"} forEach units _grp;
-			};
+            [_grp, _structure] call btc_fnc_house_addWP;
             _groups pushBack _grp;
         };
     };

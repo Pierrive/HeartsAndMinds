@@ -27,12 +27,5 @@ params [
 player setPosASL _pos;
 player addRating 9999;
 player setCaptive false;
-[player, [missionNamespace, "inventory_var"]] call BIS_fnc_loadInventory;
-
-//Fonction Pierrive
-[] execVM "scripts\respawnPierrive.sqf";
-
-//TOW fonction
-player setVariable ["SA_Tow_Actions_Loaded",false];
 
 btc_rep_malus_player_respawn remoteExecCall ["btc_fnc_rep_change", 2];

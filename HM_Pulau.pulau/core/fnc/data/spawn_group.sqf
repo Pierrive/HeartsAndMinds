@@ -107,11 +107,7 @@ if (_type isEqualTo 5) then {
         _this setVariable ["suicider", true];
 
         private _suicider = leader _this;
-		if ((vest _suicider) == "") then {_suicider addVest "V_HarnessOGL_brn"} else {removeVest _suicider; _suicider addVest "V_HarnessOGL_brn"};
-        _suicider addMagazines ["DemoCharge_Remote_Mag", 2];
-		private _expl4 = "DemoCharge_Remote_Ammo" createVehicle (position _suicider);
-		_expl4 attachTo [_suicider, [0, 0.5, 0.5], "Pelvis"];
-		
+
         //Main check
 
         private _cond = false;

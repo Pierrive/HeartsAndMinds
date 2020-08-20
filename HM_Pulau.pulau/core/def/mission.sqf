@@ -1,5 +1,5 @@
 
-btc_version = [1, 20, 6];
+btc_version = [1, 20, 4];
 diag_log format (["=BTC= HEARTS AND MINDS VERSION %1.%2.%3"] + btc_version);
 
 //Param
@@ -153,7 +153,7 @@ if (isServer) then {
 
     //Patrol
     btc_patrol_active = [];
-    btc_patrol_area = 1250;
+    btc_patrol_area = 2500;
 
     //Rep
     btc_global_reputation = _p_rep;
@@ -262,8 +262,8 @@ if (isServer) then {
     btc_type_solarPanel = _allClassSorted select {_x isKindOf "Land_SolarPanel_04_base_F"};
 
     //BTC Vehicles in missions.sqm
-    btc_vehicles = [btc_veh_1, btc_veh_2, btc_veh_3, btc_veh_4, btc_veh_5, btc_veh_6, btc_veh_7, btc_veh_8, btc_veh_9, btc_veh_10, btc_veh_11, btc_veh_12, btc_veh_13, btc_veh_14, btc_veh_15, btc_veh_16, btc_veh_17, btc_veh_18, btc_veh_19, btc_veh_20, btc_veh_21];
-    btc_helo = [btc_helo_1,btc_helo_2,btc_helo_3,btc_helo_4,btc_helo_5];
+    btc_vehicles = [btc_veh_1, btc_veh_2, btc_veh_3, btc_veh_4, btc_veh_5, btc_veh_6, btc_veh_7, btc_veh_8, btc_veh_9, btc_veh_10, btc_veh_11, btc_veh_12, btc_veh_13, btc_veh_14, btc_veh_15, btc_veh_16];
+    btc_helo = [btc_helo_1];
 
     // The two arrays below are prefixes of buildings and their multiplier.
     // They will multiply the values of btc_rep_malus_building_destroyed and btc_rep_malus_building_damaged,
@@ -335,7 +335,7 @@ btc_g_civs = ["HandGrenade", "MiniGrenade", "ACE_M84", "ACE_M84"];
 //FOB
 btc_fob_mat = "Land_Cargo20_blue_F";
 btc_fob_structure = "Land_Cargo_HQ_V1_F";
-btc_fob_flag = "OFrP_Flag_France";
+btc_fob_flag = "Flag_NATO_F";
 btc_fob_id = 0;
 
 //IED
@@ -629,17 +629,17 @@ btc_spect_updateOn = -1;
 
 //Rep
 btc_rep_bonus_cache = 100;
-btc_rep_bonus_civ_hh = 10;
+btc_rep_bonus_civ_hh = 3;
 btc_rep_bonus_disarm = 25;
 btc_rep_bonus_hideout = 200;
 btc_rep_bonus_mil_killed = 0.25;
 
-btc_rep_malus_civ_hd = - 5;
-btc_rep_malus_civ_killed = - 5;
-btc_rep_malus_civ_firenear = - 1;
-btc_rep_malus_player_respawn = - 5;
+btc_rep_malus_civ_hd = - 10;
+btc_rep_malus_civ_killed = - 10;
+btc_rep_malus_civ_firenear = - 5;
+btc_rep_malus_player_respawn = - 10;
 btc_rep_malus_veh_killed = - 25;
-btc_rep_malus_building_damaged = - 1;
+btc_rep_malus_building_damaged = - 2.5;
 btc_rep_malus_building_destroyed = - 5;
 
 //Skill

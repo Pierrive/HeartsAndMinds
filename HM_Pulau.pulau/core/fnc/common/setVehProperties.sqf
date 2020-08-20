@@ -13,7 +13,6 @@ Parameters:
     _fuelSource - Fuel cargo and hook. [Array]
     _pylons - Array of pylon. [Array]
     _isContaminated - Set a vehicle contaminated. [Boolean]
-	_supplyVehicle - Is supply vehicle and current supply count. [Boolean]
 
 Returns:
 	_vehicle - Vehicle. [Object]
@@ -35,20 +34,16 @@ params [
     ["_isRepairVehicle", false, [true]],
     ["_fuelSource", [], [[]]],
     ["_pylons", [], [[]]],
-    ["_isContaminated", false, [false]],
-    ["_supplyVehicle", [], [[]]]
+    ["_isContaminated", false, [false]]
 ];
 
 [_vehicle, _customization select 0, _customization select 1] call BIS_fnc_initVehicle;
-
-if (_isMedicalVehicle && {!([_vehicle] call ace_medical_treatment_fnc_isMedicalVehicle)}) then {
-    _vehicle setVariable ["ace_medical_isMedicalVehicle", _isMedicalVehicle, true];
+if (_isMedicalVehicle && {!([_veh] call ace_medical_treatment_fnc_isMedicalVehicle)}) then {
+    _veh setVariable ["ace_medical_isMedicalVehicle", _isMedicalVehicle, true];
 };
-
 if (_isRepairVehicle && {!([_vehicle] call ace_repair_fnc_isRepairVehicle)}) then {
     _vehicle setVariable ["ACE_isRepairVehicle", _isRepairVehicle, true];
 };
-
 if !(_fuelSource isEqualTo []) then {
     _fuelSource params [
         ["_fuelCargo", 0, [0]],
@@ -62,7 +57,6 @@ if !(_fuelSource isEqualTo []) then {
         };
     };
 };
-
 if !(_pylons isEqualTo []) then {
     private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
     {
@@ -72,21 +66,9 @@ if !(_pylons isEqualTo []) then {
         _vehicle setPylonLoadOut [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex]
     } forEach _pylons;
 };
-
 if (_isContaminated) then {
-    if ((btc_chem_contaminated pushBackUnique _vehicle) > -1) then {
+    if ((btc_chem_contaminated pushBackUnique _veh) > -1) then {
         publicVariable "btc_chem_contaminated";
-    };
-};
-
-if !(_supplyVehicle isEqualTo []) then {
-    _supplyVehicle params [
-        ["_isSupplyVehicle", false, [false]],
-        ["_currentSupply", -1, [0]]
-    ];
-
-    if (_isSupplyVehicle && !([_vehicle] call ace_rearm_fnc_isSource)) then {
-        [_vehicle, _currentSupply] call ace_rearm_fnc_makeSource;
     };
 };
 

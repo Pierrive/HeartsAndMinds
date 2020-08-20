@@ -14,9 +14,6 @@
     [] call btc_fnc_int_add_actions;
     [] call btc_fnc_int_shortcuts;
 
-	//reactivate Zeus et centre repair
-	[] execVM "scripts\respawnPierrive.sqf";
-
     if (player getVariable ["interpreter", false]) then {
         player createDiarySubject ["btc_diarylog", localize "STR_BTC_HAM_CON_INFO_ASKHIDEOUT_DIARYLOG"];
     };

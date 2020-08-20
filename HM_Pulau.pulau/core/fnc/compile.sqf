@@ -327,8 +327,7 @@ if (!isDedicated) then {
     btc_fnc_log_repair_wreck = compile preprocessFileLineNumbers "core\fnc\log\repair_wreck.sqf";
     btc_fnc_log_copy = compile preprocessFileLineNumbers "core\fnc\log\copy.sqf";
     btc_fnc_log_paste = compile preprocessFileLineNumbers "core\fnc\log\paste.sqf";
-	btc_fnc_log_refuelSource = compile preprocessFileLineNumbers "core\fnc\log\refuelSource.sqf";
-	
+
     //REP
     btc_fnc_rep_treatment = compile preprocessFileLineNumbers "core\fnc\rep\treatment.sqf";
 
@@ -353,7 +352,4 @@ if (!isDedicated) then {
     btc_fnc_tow_ropeCreate = compile preprocessFileLineNumbers "core\fnc\tow\ropeCreate.sqf";
     btc_fnc_tow_hitch_points = compile preprocessFileLineNumbers "core\fnc\tow\hitch_points.sqf";
     btc_fnc_tow_unhook = compile preprocessFileLineNumbers "core\fnc\tow\unhook.sqf";
-	
-	//Pierrive Limit Zeus
-	btc_scripts_function_limitZeus = compile preprocessFileLineNumbers "scripts\function\limitZeus.sqf";
 };

@@ -170,7 +170,6 @@ if !(btc_cache_pos isEqualTo []) then {
 if (_has_ho && {!(_city getVariable ["ho_units_spawned", false])}) then {
     _city setVariable ["ho_units_spawned", true];
     private _pos = _city getVariable ["ho_pos", getPos _city];
-	[_pos, 100, 3, _wp_house] call btc_fnc_mil_create_group;
     [_pos, 20, 10 + round (_p_mil_group_ratio * random 6), 1.1] call btc_fnc_mil_create_group;
     [_pos, 120, 1 + round random 2, _wp_sentry] call btc_fnc_mil_create_group;
     [_pos, 120, 1 + round random 2, _wp_sentry] call btc_fnc_mil_create_group;

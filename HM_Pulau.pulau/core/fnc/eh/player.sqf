@@ -63,10 +63,6 @@ if (btc_p_chem) then {
     ["DeconShower_02_F", "init", {(_this select 0) setVariable ['bin_deconshower_disableAction', true];}] call CBA_fnc_addClassEventHandler;
 
     [] call btc_fnc_chem_ehDetector;
-	
-} else {
-	
-	[] call btc_scripts_function_limitZeus;
 };
 
 if (btc_p_spect) then {
@@ -77,14 +73,3 @@ if (btc_p_spect) then {
         [_unit, currentWeapon _unit] call btc_fnc_spect_updateDevice;
     }] call CBA_fnc_addPlayerEventHandler;
 };
-
-[ missionNamespace, "arsenalClosed", {
-	waitUntil {time > 0.2};    //Time to wait to make sure Arsenal items are applied
-	[player, [missionNamespace, "inventory_var"]] call BIS_fnc_saveInventory;
-}] call BIS_fnc_addScriptedEventHandler;
-
-["ace_arsenal_displayClosed", {
-	waitUntil {time > 0.2};    //Time to wait to make sure Arsenal items are applied
-	[player, [missionNamespace, "inventory_var"]] call BIS_fnc_saveInventory;
-	if (('Laserdesignator' in (assignedItems player)) && !("Laserbatteries" in ((vestItems player) + (uniformItems player) + (backpackItems player)))) then {player addMagazine "Laserbatteries"};
-}] call CBA_fnc_addEventHandler;

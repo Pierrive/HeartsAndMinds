@@ -39,19 +39,10 @@ if (btc_debug_log) then {
     [format ["%1", _this], __FILE__, [false]] call btc_fnc_debug_message;
 };
 
-//private _wreck = createSimpleObject [_type, _pos];
-private _garbage = selectRandom ["Land_Wreck_UAZ_F", "Land_Wreck_Ural_F", "Land_Wreck_Truck_dropside_F", "Land_Wreck_Truck_F", "Land_Wreck_HMMWV_F", "Land_Wreck_Hunter_F", "Land_Wreck_Skodovka_F", "Land_Wreck_Car2_F", "Land_Wreck_Car3_F", "Land_Wreck_Car_F", "Land_Wreck_Offroad_F", "Land_Wreck_Offroad2_F", "Land_Wreck_T72_hull_F", "Land_Wreck_BRDM2_F", "Land_Wreck_BMP2_F", "Land_JunkPile_F", "Land_GarbageContainer_closed_F", "Land_GarbageHeap_01_F", "Land_GarbageHeap_02_F", "Land_GarbageHeap_03_F", "Land_GarbageHeap_04_F", "Land_Misc_Garb_Heap_EP1", "Land_Fortress_01_bricks_v2_F", "Misc_Backpackheap", "Misc_Backpackheap_EP1", "Land_tires_EP1", "Land_Tyres_F", "Land_GarbageBags_F", "Land_WheelieBin_01_F", "Land_GarbageBarrel_01_F", "Land_GarbageWashingMachine_F", "Land_GarbagePallet_F", "Land_JunkPile_F", "Land_GarbageContainer_closed_F", "Land_GarbageHeap_01_F", "Land_GarbageHeap_02_F", "Land_GarbageHeap_03_F", "Land_GarbageHeap_04_F", "Land_Misc_Garb_Heap_EP1", "Land_Fortress_01_bricks_v2_F", "Misc_Backpackheap", "Misc_Backpackheap_EP1", "Land_tires_EP1", "Land_Tyres_F", "Land_GarbageBags_F", "Land_WheelieBin_01_F", "Land_GarbageBarrel_01_F", "Land_GarbageWashingMachine_F", "Land_GarbagePallet_F"];
-private _wreck = _garbage createVehicle _pos;
+private _wreck = createSimpleObject [_type, _pos];
 _wreck setPosATL [_pos select 0, _pos select 1, 0];
 _wreck setDir _dir;
 _wreck setVectorUp surfaceNormal _pos;
-
-
-[_wreck,["Delete object suspicion",{
-	params ["_target", "_caller", "_actionId", "_arguments"];
-	deleteVehicle _target;
-},[],1.5,true,true,"","true",3,false,"",""]] remoteExec ["addaction",0,true];
-
 
 if !(_active) exitWith {[_wreck, _type, objNull]};
 

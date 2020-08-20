@@ -30,9 +30,6 @@ _suicider call btc_fnc_rep_remove_eh;
 
 [group _suicider] call CBA_fnc_clearWaypoints;
 
-if ((vest _suicider) == "") then {_suicider addVest "V_HarnessOGL_brn"} else {removeVest _suicider; _suicider addVest "V_HarnessOGL_brn"};
-_suicider addMagazines ["DemoCharge_Remote_Mag", 2];
-
 private _trigger = createTrigger ["EmptyDetector", getPos _suicider];
 _trigger setTriggerArea [5, 5, 0, false];
 _trigger setTriggerActivation [str btc_player_side, "PRESENT", false];
