@@ -118,6 +118,7 @@ btc_vehicles = [];
 missionNamespace setVariable ["ArrayVehNoRespawn", btc_vehicles, true];
 
 private _vehs = profileNamespace getVariable [format ["btc_hm_%1_vehs", _name], []];
+
 [{
     params ["_vehs", "_global_reputation"];
 
@@ -159,6 +160,12 @@ private _vehs = profileNamespace getVariable [format ["btc_hm_%1_vehs", _name], 
             _veh setVariable ["ace_cookoff_enableAmmoCookoff", false, true];
             _veh setDamage [1, false];
         };
+		
+		if ((getpos _veh) inArea "garageVeh") then {
+			[_veh,false] remoteExec ["allowdammage", 0];
+			[_veh,true] remoteExec ["hideObjectGlobal", 0];
+			[_veh,false] remoteExec ["enableSimulationGlobal", 0];
+		};
 		
 		btc_vehicles pushBack _veh_name;
     } forEach _vehs;

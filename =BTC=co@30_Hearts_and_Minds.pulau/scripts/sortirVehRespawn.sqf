@@ -1,3 +1,5 @@
+if ([btc_create_object_point] call btc_fnc_checkArea) exitWith {};
+
 //AlPMaker
 private _max = 10;
 btc_Out_helo = missionNamespace getVariable "ArrayVehRespawn";
@@ -42,8 +44,8 @@ if !(pselectVeh isEqualTo "exit") then {
 	
 	if ((getpos _name) inArea "garageVeh") then {
 		hint format ["Sortie du véhicule %1 en cours...", _name];
-		[SpawnVehAll,["Sortie_Veh",200]] remoteExec ["say3d", 0, false];
-		_name setPosATL [getPosATL SpawnVehAll select 0, getPosATL SpawnVehAll select 1, getPosATL SpawnVehAll select 2];
+		[btc_create_object_point,["Sortie_Veh",200]] remoteExec ["say3d", 0, false];
+		_name setPosATL [getPosATL btc_create_object_point select 0, getPosATL btc_create_object_point select 1, getPosATL btc_create_object_point select 2];
 		_name setdir 190;
 		[_name,false] remoteExec ["allowdammage", 0];
 		[_name,true] remoteExec ["hideObjectGlobal", 0];

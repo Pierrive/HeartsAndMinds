@@ -1,14 +1,12 @@
-//[SpawnVehAll] execVM "scripts\rangementVeh.sqf";
+//[] execVM "scripts\rangementVeh.sqf";
+private ["_Array_Var_btc_veh","_Array_Var_btc_helo","_nearestvehicles","_count"];
 
-private ["_posSpawnVeh","_Array_Var_btc_veh","_Array_Var_btc_helo","_nearestvehicles","_count"];
-
-_posSpawnVeh = _this select 0;
 _Array_Var_btc_veh = missionNamespace getVariable "ArrayVehNoRespawn";
 _Array_Var_btc_helo = missionNamespace getVariable "ArrayVehRespawn";
 
 sleep 0.5;
 
-_nearestvehicles = nearestObjects [_posSpawnVeh, ["Car","Armored","Air","Tank"], 10];
+_nearestvehicles = nearestObjects [btc_create_object_point, ["Car","Armored","Air","Tank"], 10];
 _count = count _nearestvehicles;
 
 sleep 0.5;
@@ -17,7 +15,7 @@ if (_count > 0) exitwith {
 	{
 		if ((_x in _Array_Var_btc_veh) || (_x in _Array_Var_btc_helo)) then {
 			hint "Rangement Véhicule en cours ...";
-			[SpawnVehAll,["Rentrer_Veh",200]] remoteExec ["say3d", 0, false];
+			[btc_create_object_point,["Rentrer_Veh",200]] remoteExec ["say3d", 0, false];
 			sleep 13;
 			 hint "Vehicule Rangé";
 			[_x, false] remoteExec ["allowdammage", 0]; 

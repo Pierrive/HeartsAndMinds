@@ -57,10 +57,4 @@ if (getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "isUav") isEqualTo 1
 
 [_veh, false, _veh_name] call btc_fnc_db_add_veh;
 
-if ((getpos _veh) inArea "garageVeh") then {
-	[_veh,false] remoteExec ["allowdammage", 0];
-	[_veh,true] remoteExec ["hideObjectGlobal", 0];
-	[_veh,false] remoteExec ["enableSimulationGlobal", 0];
-};
-
 _veh
