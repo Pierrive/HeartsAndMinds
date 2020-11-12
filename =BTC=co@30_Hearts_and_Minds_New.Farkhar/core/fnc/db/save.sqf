@@ -24,8 +24,10 @@ params [
     ["_name", worldName, [""]]
 ];
 
-if (btc_debug) then {
-    ["...1", __FILE__, [btc_debug, false, true]] call btc_fnc_debug_message;
+private _btc_debug_local = true;
+
+if (_btc_debug_local) then {
+    ["...1", __FILE__, [_btc_debug_local, false, true]] call btc_fnc_debug_message;
 };
 
 [8] remoteExecCall ["btc_fnc_show_hint", 0];
@@ -39,8 +41,8 @@ btc_db_is_saving = true;
     };
 } forEach btc_city_all;
 
-if (btc_debug) then {
-    ["...2", __FILE__, [btc_debug, false, true]] call btc_fnc_debug_message;
+if (_btc_debug_local) then {
+    ["...2", __FILE__, [_btc_debug_local, false, true]] call btc_fnc_debug_message;
 };
 
 [false] call btc_fnc_db_delete;
@@ -134,34 +136,6 @@ private _fobs = [];
 } forEach (btc_fobs select 0);
 profileNamespace setVariable [format ["btc_hm_%1_fobs", _name], _fobs];
 
-//Vehicles status
-private _array_veh = [];
-{
-    private _data = [];
-    _data pushBack (typeOf _x);
-    _data pushBack (getPosASL _x);
-    _data pushBack (getDir _x);
-    _data pushBack (fuel _x);
-    _data pushBack (getAllHitPointsDamage _x);
-    private _cargo = [];
-    {
-        _cargo pushBack (if (_x isEqualType "") then {
-            [_x, "", [[], [], []]]
-        } else {
-            [typeOf _x, _x getVariable ["ace_rearm_magazineClass", ""], [getWeaponCargo _x, getMagazineCargo _x, getItemCargo _x], _x in btc_chem_contaminated]
-        });
-    } forEach (_x getVariable ["ace_cargo_loaded", []]);
-    _data pushBack _cargo;
-    private _cont = [getWeaponCargo _x, getMagazineCargo _x, getItemCargo _x];
-    _data pushBack _cont;
-    _data append ([_x] call btc_fnc_getVehProperties);
-    _array_veh pushBack _data;
-    if (btc_debug_log) then {
-        [format ["VEH %1 DATA %2", _x, _data], __FILE__, [false]] call btc_fnc_debug_message;
-    };
-} forEach (btc_vehicles - [objNull]);
-profileNamespace setVariable [format ["btc_hm_%1_vehs", _name], _array_veh];
-
 //Objects status
 private _array_obj = [];
 {
@@ -171,7 +145,8 @@ private _array_obj = [];
     };
 } forEach (btc_log_obj_created select {
     !(isObjectHidden _x) &&
-    (objectParent _x) isEqualTo objNull
+    isNull objectParent _x &&
+    isNull isVehicleCargo _x
 });
 profileNamespace setVariable [format ["btc_hm_%1_objs", _name], _array_obj];
 
@@ -185,9 +160,18 @@ profileNamespace setVariable [format ["btc_hm_%1_markers", _name], _markers_prop
 //End
 profileNamespace setVariable [format ["btc_hm_%1_db", _name], true];
 saveProfileNamespace;
-if (btc_debug) then {
-    ["...3", __FILE__, [btc_debug, false, true]] call btc_fnc_debug_message;
+
+uisleep 5;
+
+//Vehicles status
+[] spawn btc_fnc_db_saveVeh;
+
+uisleep 5;
+
+if (_btc_debug_local) then {
+    ["...3", __FILE__, [_btc_debug_local, false, true]] call btc_fnc_debug_message;
 };
+
 [9] remoteExecCall ["btc_fnc_show_hint", 0];
 
 btc_db_is_saving = false;

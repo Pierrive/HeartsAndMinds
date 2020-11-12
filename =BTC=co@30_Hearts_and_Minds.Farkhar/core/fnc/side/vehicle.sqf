@@ -38,6 +38,11 @@ _veh setDir (random 360);
 _veh setDamage 0.7;
 _veh setHit ["wheel_1_1_steering", 1];
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 6, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 400, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 [_taskID, 5, _veh, [_city getVariable "name", _veh_type]] call btc_fnc_task_create;
 
 waitUntil {sleep 5; (_taskID call BIS_fnc_taskCompleted || (_veh getHit "wheel_1_1_steering" < 1) || !alive _veh)};

@@ -108,14 +108,14 @@ if !(_data_units isEqualTo []) then {
         case "NameLocal" : {2};
         case "NameVillage" : {3};
         case "NameCity" : {7};
-        case "NameCityCapital" : {15};
-        case "Airport" : {15};
+        case "NameCityCapital" : {12};
+        case "Airport" : {12};
         case "NameMarine" : {1};
-        default {0};
+        default {2};
     });
 
     if (_has_en) then {
-        for "_i" from 1 to (round (_p_mil_group_ratio * (1 + random _max_number_group))) do {[_city, _radius, 1 + round random [0, 1, 2] , random 1] call btc_fnc_mil_create_group;};
+        for "_i" from 1 to (round (_p_mil_group_ratio * (1 + random _max_number_group))) do {[_city, _radius, 1 + round random [1, 2, 3] , random 1] call btc_fnc_mil_create_group;};
     };
 
     //Spawn civilians
@@ -123,12 +123,12 @@ if !(_data_units isEqualTo []) then {
         private _max_number_group = (switch _type do {
             case "NameLocal" : {3};
             case "NameVillage" : {6};
-            case "NameCity" : {10};
-            case "NameCityCapital" : {19};
+            case "NameCity" : {9};
+            case "NameCityCapital" : {12};
             case "Airport" : {6};
             default {2};
         });
-        [_city, _radius/3, round (_p_civ_group_ratio * random _max_number_group)] call btc_fnc_civ_populate;
+        [_city, _radius/3, (round (_p_civ_group_ratio * random _max_number_group))] call btc_fnc_civ_populate;
     };
 };
 
@@ -170,9 +170,8 @@ if !(btc_cache_pos isEqualTo []) then {
 if (_has_ho && {!(_city getVariable ["ho_units_spawned", false])}) then {
     _city setVariable ["ho_units_spawned", true];
     private _pos = _city getVariable ["ho_pos", getPos _city];
-	[_pos, 100, 3, _wp_house] call btc_fnc_mil_create_group;
     [_pos, 20, 10 + round (_p_mil_group_ratio * random 6), 1.1] call btc_fnc_mil_create_group;
-    [_pos, 120, 1 + round random 2, _wp_sentry] call btc_fnc_mil_create_group;
+	[_pos, 100, 3, _wp_house] call btc_fnc_mil_create_group;
     [_pos, 120, 1 + round random 2, _wp_sentry] call btc_fnc_mil_create_group;
     private _random = random 1;
     switch (true) do {

@@ -81,6 +81,11 @@ _unit setUnitPos "DOWN";
 
 [_taskID, 8, _unit, [_city getVariable "name", _unit_type]] call btc_fnc_task_create;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 200, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 sleep 1;
 
 waitUntil {sleep 5; (_taskID call BIS_fnc_taskCompleted || !(playableUnits inAreaArray [getPosWorld _unit, 5000, 5000] isEqualTo []))};

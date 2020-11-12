@@ -48,6 +48,11 @@ private _launchsite = createVehicle ["Land_PenBlack_F", _pos, [], 0, "FLY"];
 private _terminal_taskID = _taskID + "ter";
 [[_terminal_taskID, _taskID], 17, _terminal, _terminalType] call btc_fnc_task_create;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 10, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 200, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 //// Add interaction on Terminal \\\\
 _terminal setVariable ["btc_terminal_taskID", _terminal_taskID, true];
 [_terminal] remoteExecCall ["btc_fnc_int_terminal", [0, -2] select isDedicated, _terminal];

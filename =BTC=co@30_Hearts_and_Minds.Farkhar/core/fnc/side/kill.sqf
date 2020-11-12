@@ -56,6 +56,11 @@ private _officerType = selectRandom btc_type_units;
 private _officer = _group_officer createUnit [_officerType, _pos, [], 0, "CAN_COLLIDE"];
 [_group_officer] call btc_fnc_mil_unit_create;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 150, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 //// Data side mission
 private _officerName = name _officer;
 [_taskID, 25, objNull, [_officerName, _city getVariable "name"]] call btc_fnc_task_create;

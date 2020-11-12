@@ -16,31 +16,42 @@ sleep 30;
 openMap [false, false];
 
 */
+private _player = _this select 0;
 
-private _markerArray = [];
+city_position = getpos _player;
 
-{
-    if (_x getVariable ["type", ""] != "NameMarine") then {
-        if (_x getVariable ["marker", ""] != "") then {
-            deleteMarker (_x getVariable ["marker", ""]);
-        };
-        private _radius_x = _x getVariable ["RadiusX", 500];
-        private _radius_y = _x getVariable ["RadiusY", 500];
+//Force open users map
+openMap [true, false];
 
-        private _marker = createMarker [format ["city_%1", position _x], position _x];
-        _marker setMarkerShape "ELLIPSE";
-        _marker setMarkerBrush "SolidBorder";
-        _marker setMarkerSize [_radius_x + _radius_y, _radius_x + _radius_y];
-        _marker setMarkerAlpha 0.5;
-		_markerArray pushback _marker;
-        if (_x getVariable ["occupied", false]) then {
-            _marker setMarkerColor "colorRed";
-        } else {
-            _marker setMarkerColor "colorGreen";
-        };
-    };
-	sleep 0.1;
-} forEach btc_city_all;
+//Display user instruction
+hint "Cliquer sur la carte pour vérifier si le lieu est pacifié ou non";
+
+//Make sure map is open, before...
+waitUntil{ !isNull findDisplay 12 };
+
+[ "check_MAP", "onMapSingleClick", { city_position = _pos } ] call BIS_fnc_addStackedEventHandler;
+
+//Wait for selection
+waitUntil { !(city_position isEqualTo (getpos _player))};
+
+hint "Secteur Sélectionné";
+
+private _nearCityPos = [btc_city_all, [], { city_position distance2D _x }, "ASCEND"] call BIS_fnc_sortBy;
+private _CityPos = _nearCityPos select 0;
+
+private _marker = createMarker [format ["city_%1", position _CityPos], position _CityPos];
+_marker setMarkerShape "ELLIPSE";
+_marker setMarkerBrush "SolidBorder";
+_marker setMarkerSize [300, 300];
+_marker setMarkerAlpha 0.7;
+
+if (_CityPos getVariable ["occupied", false]) then {
+    _marker setMarkerColor "colorRed";
+} else {
+    _marker setMarkerColor "colorGreen";
+};
+
+[ "check_MAP", "onMapSingleClick" ] call BIS_fnc_removeStackedEventHandler;
 
 sleep 30;
-{deleteMarker _x} foreach _markerArray;
+deleteMarker _marker;

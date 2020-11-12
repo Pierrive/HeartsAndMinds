@@ -36,6 +36,9 @@ if (btc_debug_log) then {
     private _wp = [_group, [_x, 0.2] call CBA_fnc_randPos, -1, "MOVE", "UNCHANGED", "NO CHANGE", "UNCHANGED", "NO CHANGE", "", [15, 20, 30]] call CBA_fnc_addWaypoint;
     _wp waypointAttachObject _house;
     _wp setWaypointHousePosition _forEachIndex;
+	if ((random 1) > 0.51) then {
+		_wp setWaypointStatements ["true", "{_x forceSpeed 0; _x setUnitPos 'UP'} forEach thisList"];
+	};
 } forEach _allpositions;
 
 _allpositions

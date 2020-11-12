@@ -80,15 +80,39 @@ private _weapons = [
 	"OFrP_AT4CS_Loaded",
 	"OFrP_AT4CS_Inert_Loaded",
 	"OFrP_ERYX",
-	"rhs_weap_M136",
-	"rhs_weap_M136_hedp",
-	"rhs_weap_M136_hp",
-	"rhs_weap_fim92",
 	"launch_MRAWS_sand_rail_F",
 	"launch_MRAWS_sand_F",
 	"rhs_weap_m249_pip_S",
 	"rhs_weap_minimi_para_railed",
-	"LMG_03_F"
+	"LMG_03_F",
+	
+		//Lanceur
+	"rhs_weap_fgm148",
+	"rhs_weap_fim92",
+	"rhs_weap_M136",
+	"rhs_weap_M136_hedp",
+	"rhs_weap_M136_hp",
+	"rhs_weap_maaws",
+	"rhs_weap_m72a7",
+	"rhs_weap_smaw",
+	"rhs_weap_smaw_green",
+	"launch_NLAW_F",
+	"launch_B_Titan_short_tna_F",
+	"launch_B_Titan_tna_F",
+	
+	//Guns
+	"rhsusf_weap_m9",
+	"rhsusf_weap_glock17g4",
+	"rhsusf_weap_m1911a1",
+	"rhs_weap_M320",
+	"hgun_Pistol_heavy_01_green_F",
+	"hgun_esd_01_F",
+	"ACE_Flashlight_Maglite_ML300L",
+	"ACE_VMH3",
+	"ACE_VMM3",
+	"rhs_weap_rsp30_white",
+	"rhs_weap_rsp30_green",
+	"rhs_weap_rsp30_red"
 ];
 
 private _magazines = [
@@ -146,15 +170,23 @@ private _magazines = [
 	"OFrP_7Rnd_127x99_APEI",
 	"rhsusf_200rnd_556x45_mixed_box",
 	"rhsusf_200Rnd_556x45_box",
+	"rhs_weap_M107",
 	"ACE_HuntIR_M203",
 	"ACE_40mm_Flare_ir",
 	"Laserbatteries",
+	"rhs_fgm148_magazine_AT",
+	"Titan_AA",
+	"rhs_mag_maaws_HE",
+	"rhs_mag_maaws_HEDP",
+	"rhs_mag_maaws_HEAT",
+	"rhs_mag_smaw_HEDP",
+	"rhs_mag_smaw_HEAA",
 	
 	/*Mine*/
 	"APERSMineDispenser_Mag", "ACE_FlareTripMine_Mag", "DemoCharge_Remote_Mag", "rhsusf_mine_m14_mag", "ATMine_Range_Mag", "SatchelCharge_Remote_Mag", "ClaymoreDirectionalMine_Remote_Mag", "APERSBoundingMine_Range_Mag", "SLAMDirectionalMine_Wire_Mag", "Drone_Range_Mag", "TrainingMine_Mag", "APERSMine_Range_Mag",
 
 	/*Grenade Main*/
-	"ACE_M14", "Chemlight_blue", "Chemlight_yellow", "Chemlight_red", "Chemlight_green", "ACE_CTS9", "ACE_Chemlight_White", "ACE_Chemlight_IR", "ACE_Chemlight_Orange", "ACE_Chemlight_HiWhite", "ACE_Chemlight_HiBlue", "ACE_Chemlight_HiYellow", "ACE_Chemlight_HiRed", "ACE_Chemlight_HiGreen", "ACE_Chemlight_UltraHiOrange", "B_IR_Grenade", "ACE_HandFlare_White", "ACE_HandFlare_Yellow", "ACE_HandFlare_Red", "ACE_HandFlare_Green", "SmokeShellBlue", "SmokeShellYellow", "SmokeShellOrange", "SmokeShellPurple", "SmokeShellRed", "SmokeShellGreen", "HandGrenade", "SmokeShell", "ACE_M84", "MiniGrenade"
+	"ACE_M14", "Chemlight_blue", "Chemlight_yellow", "Chemlight_red", "Chemlight_green", "ACE_CTS9", "ACE_Chemlight_White", "ACE_Chemlight_IR", "ACE_Chemlight_Orange", "ACE_Chemlight_HiWhite", "ACE_Chemlight_HiBlue", "ACE_Chemlight_HiYellow", "ACE_Chemlight_HiRed", "ACE_Chemlight_HiGreen", "ACE_Chemlight_UltraHiOrange", "B_IR_Grenade", "ACE_HandFlare_White", "ACE_HandFlare_Yellow", "ACE_HandFlare_Red", "ACE_HandFlare_Green", "SmokeShellBlue", "SmokeShellYellow", "SmokeShellOrange", "SmokeShellPurple", "SmokeShellRed", "SmokeShellGreen", "HandGrenade", "SmokeShell", "ACE_M84", "MiniGrenade", "rhs_mag_m18_green", "rhs_mag_m67"
 ];
 
 private _items = [

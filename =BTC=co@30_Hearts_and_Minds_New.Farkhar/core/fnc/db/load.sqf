@@ -115,8 +115,10 @@ private _global_reputation = profileNamespace getVariable [format ["btc_hm_%1_re
 //VEHICLES
 {deleteVehicle _x} forEach btc_vehicles;
 btc_vehicles = [];
+missionNamespace setVariable ["ArrayVehNoRespawn", btc_vehicles, true];
 
 private _vehs = profileNamespace getVariable [format ["btc_hm_%1_vehs", _name], []];
+
 [{
     params ["_vehs", "_global_reputation"];
 
@@ -135,14 +137,15 @@ private _vehs = profileNamespace getVariable [format ["btc_hm_%1_vehs", _name], 
             ["_fuelSource", [], [[]]],
             ["_pylons", [], [[]]],
             ["_isContaminated", false, [false]],
-            ["_supplyVehicle", [], [[]]]
+            ["_supplyVehicle", [], [[]]],
+			"_veh_name"
         ];
 
         if (btc_debug_log) then {
             [format ["_veh = %1", _x], __FILE__, [false]] call btc_fnc_debug_message;
         };
 
-        private _veh = [_veh_type, _veh_pos, _veh_dir, _customization, _isMedicalVehicle, _isRepairVehicle, _fuelSource, _pylons, _isContaminated, _supplyVehicle] call btc_fnc_log_createVehicle;
+        private _veh = [_veh_type, _veh_pos, _veh_dir, _customization, _isMedicalVehicle, _isRepairVehicle, _fuelSource, _pylons, _isContaminated, _supplyVehicle, _veh_name] call btc_fnc_log_createVehicle;
         if ((getPos _veh) select 2 < 0) then {_veh setVectorUp surfaceNormal position _veh;};
         _veh setFuel _veh_fuel;
 
@@ -157,6 +160,14 @@ private _vehs = profileNamespace getVariable [format ["btc_hm_%1_vehs", _name], 
             _veh setVariable ["ace_cookoff_enableAmmoCookoff", false, true];
             _veh setDamage [1, false];
         };
+		
+		if ((getpos _veh) inArea "garageVeh") then {
+			[_veh,false] remoteExec ["allowdammage", 0];
+			[_veh,true] remoteExec ["hideObjectGlobal", 0];
+			[_veh,false] remoteExec ["enableSimulationGlobal", 0];
+		};
+		
+		btc_vehicles pushBack _veh_name;
     } forEach _vehs;
     [{
         btc_global_reputation = _this;

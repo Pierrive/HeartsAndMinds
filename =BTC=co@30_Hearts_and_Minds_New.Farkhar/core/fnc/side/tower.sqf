@@ -55,6 +55,11 @@ private _statics = btc_type_gl + btc_type_mg;
 [_pos getPos [5, _direction], _statics, _direction] call btc_fnc_mil_create_static;
 [_pos getPos [- 5, _direction], _statics, _direction + 180] call btc_fnc_mil_create_static;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 400, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 private _btc_composition = [_pos, _direction, _btc_composition_tower] call btc_fnc_create_composition;
 private _tower = _btc_composition select ((_btc_composition apply {typeOf _x}) find _tower_type);
 

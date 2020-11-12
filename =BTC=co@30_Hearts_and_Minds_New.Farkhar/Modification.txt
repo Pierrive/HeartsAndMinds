@@ -1,1 +1,7 @@
-Changer Le alive Civilian (active limit à 13 et cround à 0)
+Changer Le alive Civilian (active limit à 13 et cround à 0) //ok Modification faite
+Diminuer la précision des AI //ok
+Diminuer la zone de spawn des AI concernant les villes. //ok
+Corriger l'autocorection des véhicules.
+Faire un trou dans le grillage pour accès hélico. //ok
+voir pour ne pas faire spawn les IA quand hélico. //ok
+

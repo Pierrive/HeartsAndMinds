@@ -23,14 +23,28 @@ Author:
 
 params [
     ["_veh", objNull, [objNull]],
-    ["_p_chem", btc_p_chem, [false]]
+    ["_p_chem", btc_p_chem, [false]],
+	["_veh_name", "", [""]]
 ];
 
 if !(isServer) exitWith {
     _veh remoteExecCall ["btc_fnc_db_add_veh", 2];
 };
 
-btc_vehicles pushBackUnique _veh;
+if (_veh_name isEqualTo "") then {
+	btc_vehicles pushBackUnique _veh;
+} else {
+	[_veh,""] remoteExec ["setVehicleVarName", 0];	
+	missionNamespace setVariable [_veh_name, _veh, true]; 
+    [_veh, _veh_name] remoteExecCall ["setVehicleVarName", 0, _veh_name];
+
+	_veh_name_inArray = call compile _veh_name;
+	btc_vehicles pushBackUnique _veh_name_inArray;
+	if ((str _veh_name_inArray) in btc_vehicles) then {btc_vehicles deleteAt (btc_vehicles find (str _veh_name_inArray))};
+};
+
+missionNamespace setVariable ["ArrayVehNoRespawn", btc_vehicles, true];
+
 _veh addMPEventHandler ["MPKilled", {
     if (isServer) then {_this call btc_fnc_eh_veh_killed};
 }];

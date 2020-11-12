@@ -83,12 +83,17 @@ private _triggers = [];
     //// Create trigger \\\\
     private _trigger = createTrigger ["EmptyDetector", getPos _city];
     _trigger setVariable ["unit", _x];
-    _trigger setTriggerArea [50, 50, 0, false];
+    _trigger setTriggerArea [50, 50, 0, false, 10];
     _trigger setTriggerActivation [str btc_player_side, "PRESENT", false];
     _trigger setTriggerStatements ["this", format ["_unit = thisTrigger getVariable 'unit'; [_unit] join (thisList select 0); _unit setUnitPos 'UP'; ['%1', 'SUCCEEDED'] call BIS_fnc_taskSetState; [['%2', '%3'], 21, btc_create_object_point, typeOf btc_create_object_point, true] call btc_fnc_task_create;", _find_taskID, _back_taskID, _taskID], ""];
     _trigger attachTo [_x, [0, 0, 0]];
     _triggers pushBack _trigger;
 } forEach units _group;
+
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 400, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
 
 waitUntil {sleep 5; (
     _taskID call BIS_fnc_taskCompleted ||

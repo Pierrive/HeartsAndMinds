@@ -36,7 +36,7 @@ params [
 _wp_ratios params ["_wp_house", "_wp_sentry"];
 
 if (btc_debug) then {
-    hint ("Activate " + str _id);
+    ("Activate " + str _id) call CBA_fnc_notify;
 };
 
 private _city = btc_city_all select _id;
@@ -98,7 +98,7 @@ if !(_data_units isEqualTo []) then {
     {
         (_x call btc_fnc_data_spawn_group) params ["_leader", "_type"];
         if (_type in [5, 7]) then {
-            _leader addEventHandler ["killed", format ["[%1] call btc_fnc_eh_suicider", _id]];
+            [_leader, "killed", "btc_fnc_ied_suiciderKilled", [_id]] call btc_fnc_eh_persistOnLocalityChange;
         };
     } forEach _data_units;
 } else {
@@ -115,7 +115,7 @@ if !(_data_units isEqualTo []) then {
     });
 
     if (_has_en) then {
-        for "_i" from 1 to (round (_p_mil_group_ratio * (1 + random _max_number_group))) do {[_city, _radius, 1 + round random [0, 1, 2] , random 1] call btc_fnc_mil_create_group;};
+        for "_i" from 1 to (round (_p_mil_group_ratio * (2 + random _max_number_group))) do {[_city, _radius, 1 + round random [1, 2, 3] , random 1] call btc_fnc_mil_create_group;};
     };
 
     //Spawn civilians
@@ -204,7 +204,7 @@ if !(_city getVariable ["has_suicider", false]) then {
         } else {
             [_city, _radius] call btc_fnc_ied_suicider_create;
         };
-        _suicider addEventHandler ["killed", format ["[%1] call btc_fnc_eh_suicider", _id]];
+        [_suicider, "killed", "btc_fnc_ied_suiciderKilled", [_id]] call btc_fnc_eh_persistOnLocalityChange;
     };
 };
 

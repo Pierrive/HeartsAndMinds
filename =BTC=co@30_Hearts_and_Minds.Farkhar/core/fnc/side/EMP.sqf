@@ -68,6 +68,11 @@ for "_i" from 0 to (1 + round random 2) do {
     btc_spect_emp pushBack _box;
     publicVariable "btc_spect_emp";
 
+	//// Create Group Defence \\\\
+	_groupDef = createGroup [btc_enemy_side, true];
+	[_groupDef, _pos, 4, false] call btc_fnc_mil_createUnits;
+	[_groupDef, _pos, 150, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+	
     if (random 1 > 0.5) then {
         _composition pushBack (createMine [selectRandom btc_type_mines, _box getPos [2, random 360], [], 0]);
     } else {

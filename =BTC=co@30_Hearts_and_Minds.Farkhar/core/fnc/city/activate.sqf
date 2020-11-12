@@ -104,18 +104,18 @@ if !(_data_units isEqualTo []) then {
 } else {
     // Maximum number of enemy group
     private _max_number_group = (switch _type do {
-        case "Hill" : {1};
-        case "NameLocal" : {2};
-        case "NameVillage" : {3};
-        case "NameCity" : {7};
+        case "Hill" : {2};
+        case "NameLocal" : {6};
+        case "NameVillage" : {7};
+        case "NameCity" : {8};
         case "NameCityCapital" : {15};
         case "Airport" : {15};
         case "NameMarine" : {1};
-        default {0};
+        default {6};
     });
 
     if (_has_en) then {
-        for "_i" from 1 to (round (_p_mil_group_ratio * (1 + random _max_number_group))) do {[_city, _radius, 1 + round random [0, 1, 2] , random 1] call btc_fnc_mil_create_group;};
+        for "_i" from 1 to (round (_p_mil_group_ratio * (2 + random _max_number_group))) do {[_city, _radius, 1 + round random [2, 3, 4] , random 1] call btc_fnc_mil_create_group;};
     };
 
     //Spawn civilians

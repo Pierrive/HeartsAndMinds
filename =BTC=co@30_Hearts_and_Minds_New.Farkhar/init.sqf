@@ -5,9 +5,13 @@ if (hasInterface) then {btc_intro_done = [] spawn btc_fnc_intro;};
 [] call compile preprocessFileLineNumbers "core\def\mission.sqf";
 [] call compile preprocessFileLineNumbers "define_mod.sqf";
 
+//Param and Launch SAP
+[] call compile preprocessFileLineNumbers "SAP\paramSAP.sqf";
 
 if (isServer) then {
     [] call compile preprocessFileLineNumbers "core\init_server.sqf";
+	_handle = [300, 1500, 40, "safeZone", 600] execVM "SAP\initSpawnAI.sqf";
+	[] spawn fnc_ambianceAlive;
 };
 
 [] call compile preprocessFileLineNumbers "core\init_common.sqf";
@@ -70,4 +74,8 @@ SA_TOW_LOCKED_VEHICLES_ENABLED = true;
 ASL_SUPPORTED_VEHICLES_OVERRIDE = ["Air"];
 ACE_maxWeightCarry = 5000;
 ACE_maxWeightDrag = 10000;
+
+//Respawn sur Destroyer
+_mrkr = getMarkerPos "respawn_west";
+"respawn_west" setMarkerPosLocal [_mrkr select 0, _mrkr select 1, 23];
 

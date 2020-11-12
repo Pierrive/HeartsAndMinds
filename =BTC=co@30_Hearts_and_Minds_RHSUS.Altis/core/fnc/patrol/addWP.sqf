@@ -3,18 +3,18 @@
 Function: btc_fnc_patrol_addWP
 
 Description:
-    Fill me when you edit me !
+    Add waypoint to the end city.
 
 Parameters:
-    _group - [Group]
-    _pos - [Array]
-    _waypointStatements - [String]
+    _group - Group to add waypoint. [Group]
+    _pos - Position of the end city. [Array]
+    _waypointStatements - Code to execute on waypoint completion. [String]
 
 Returns:
 
 Examples:
     (begin example)
-        _result = [] call btc_fnc_patrol_addWP;
+        [group cursorTarget, getPos player, "[group this, 1000, [0, 0, 0], [0, 1, 2], false] call btc_fnc_patrol_WPCheck;"] call btc_fnc_patrol_addWP;
     (end)
 
 Author:
@@ -36,18 +36,23 @@ private _vehicle = vehicle leader _group;
 if (_vehicle isKindOf "Air" || _vehicle isKindOf "LandVehicle") then {
     _vehicle setFuel 1;
 };
-_group setBehaviour "SAFE";
 
+private _behaviorMode = "SAFE";
+private _combatMode = "RED";
+if (side _group isEqualTo civilian) then {
+    _behaviorMode = "CARELESS";
+    _combatMode = "BLUE";
+};
 if (_vehicle isKindOf "Air") then {
-    [_group, _pos, 0, "MOVE", "UNCHANGED", "RED", "LIMITED", "STAG COLUMN", _waypointStatements, [0, 0, 0], 20] call CBA_fnc_addWaypoint;
+    [_group, _pos, -1, "MOVE", _behaviorMode, _combatMode, "LIMITED", "STAG COLUMN", _waypointStatements, [0, 0, 0], 20] call CBA_fnc_addWaypoint;
 
 } else {
-    [_group, _pos, 0, "MOVE", "UNCHANGED", "RED", "LIMITED", "STAG COLUMN", "", [0, 0, 0], 20] call CBA_fnc_addWaypoint;
+    [_group, _pos, -1, "MOVE", _behaviorMode, _combatMode, "LIMITED", "STAG COLUMN", "", [0, 0, 0], 20] call CBA_fnc_addWaypoint;
     for "_i" from 0 to (2 + (floor (random 3))) do {
         private _newPos = [_pos, 150] call CBA_fnc_randPos;
-        [_group, _newPos, 0, "MOVE", "UNCHANGED", "RED", "UNCHANGED", "NO CHANGE", "", [0, 0, 0], 20] call CBA_fnc_addWaypoint;
+        [_group, _newPos, -1, "MOVE", "UNCHANGED", "RED", "UNCHANGED", "NO CHANGE", "", [0, 0, 0], 20] call CBA_fnc_addWaypoint;
     };
-    private _waypoint_WPCheck = [_group, _pos, 0, "MOVE", "UNCHANGED", "NO CHANGE", "UNCHANGED", "NO CHANGE", _waypointStatements, [0, 0, 0], 20] call CBA_fnc_addWaypoint;
+    private _waypoint_WPCheck = [_group, _pos, -1, "MOVE", "UNCHANGED", "NO CHANGE", "UNCHANGED", "NO CHANGE", _waypointStatements, [0, 0, 0], 20] call CBA_fnc_addWaypoint;
 };
 
 if (btc_debug) then {

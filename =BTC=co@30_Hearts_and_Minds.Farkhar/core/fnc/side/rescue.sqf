@@ -90,6 +90,11 @@ private _triggers = [];
     _triggers pushBack _trigger;
 } forEach units _group;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 400, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 waitUntil {sleep 5; (
     _taskID call BIS_fnc_taskCompleted ||
     _units select {_x distance btc_create_object_point > 100} isEqualTo [] ||

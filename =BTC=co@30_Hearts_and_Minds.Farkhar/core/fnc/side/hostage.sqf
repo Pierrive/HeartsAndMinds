@@ -70,6 +70,11 @@ private _group = [];
     [_grp] call btc_fnc_mil_unit_create;
 } forEach (_buildingPos - [_pos]);
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 10, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 150, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 _trigger = createTrigger ["EmptyDetector", _pos];
 _trigger setVariable ["group", _group];
 _trigger setTriggerArea [20, 20, 0, false];

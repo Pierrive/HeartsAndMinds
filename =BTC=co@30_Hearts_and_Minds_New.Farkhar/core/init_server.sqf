@@ -44,20 +44,8 @@ if (btc_p_side_mission_cycle > 0) then {
     };
 };
 
-base_defences = [];
-
-for "_i" from 0 to 5 do {
-	// Get marker prefixs
-	private _endStringBaseDefence = Format ["defence_spawn_%1", _i];
-	// Check if markers exist
-	if (getMarkerColor _endStringBaseDefence != "") then { [_endStringBaseDefence, ["CUP_WV_B_CRAM","B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"]] execVM "scripts\function\fn_createBaseDefence.sqf"; };
-};
-
 //marker unconsoious
 _null = [] execVM "scripts\InfoDownAce.sqf";
 
 //Active advanced TOWN
 [] spawn fnc_advancedTowingInit;
-
-//Delete Fog BackGround
-execVM "scripts\fucking_set_fog.sqf";

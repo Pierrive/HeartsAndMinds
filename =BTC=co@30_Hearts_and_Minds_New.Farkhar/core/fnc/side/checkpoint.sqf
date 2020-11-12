@@ -88,6 +88,11 @@ for "_i" from 1 to (1 + round random 2) do {
     private _static = [_posStatic, _statics, _direction] call btc_fnc_mil_create_static;
     _static setPos _posStatic;
 
+	//// Create Group Defence \\\\
+	_groupDef = createGroup [btc_enemy_side, true];
+	[_groupDef, _pos, 5, false] call btc_fnc_mil_createUnits;
+	[_groupDef, _pos, 100, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
     _composition append ([_pos, _direction, _composition_checkpoint] call btc_fnc_create_composition);
 
     private _boxe = nearestObject [_pos, _type_box];

@@ -90,6 +90,11 @@ private _composition = [
 private _direction_composition = random 360;
 private _composition_objects = [_pos, _direction_composition, _composition] call btc_fnc_create_composition;
 
+//// Create Group Defence \\\\
+_groupDef = createGroup [btc_enemy_side, true];
+[_groupDef, _pos, 8, false] call btc_fnc_mil_createUnits;
+[_groupDef, _pos, 400, 2 + floor (random 4), "MOVE", "SAFE", "RED", "LIMITED", "DIAMOND", "", [3, 6, 9]] call CBA_fnc_taskPatrol;
+
 btc_supplies_mat params ["_food", "_water"];
 waitUntil {sleep 5; (_move_taskID call BIS_fnc_taskCompleted || !((nearestObjects [_pos, [btc_supplies_cargo] + _food + _water, 30]) isEqualTo []))};
 

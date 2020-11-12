@@ -5,16 +5,17 @@ btc_custom_loc = [
     EXAMPLE: [[13132.8,3315.07,0.00128174],"NameVillage","Mountain 1",800,800,true]
 */
 
-	[[5009.07,5124.76,0],"NameVillage","Taloqan",120,120,true],
-	[[4987.04,9506.95,0],"NameVillage","Baglan",120,120,true],
-	[[2932.08,1119.85,0],"NameVillage","Balkh",120,120,true],
-	[[3507.25,1545.90,0],"NameVillage","Rustaq",120,120,true],
-	[[3849.42,1974.82,0],"NameVillage","Kushk",120,120,true],
-	[[3569.67,2636.57,0],"NameVillage","Chahab",120,120,true],
-	[[3197.48,211.134,0],"NameCity","Ghazni",200,200,true],
-	[[6675.59,349.847,0],"NameCity","Gurian",250,150,true],
-	[[3168.06,3714.9,0],"NameCity","Aybak",250,150,true],
-	[[4794.22,8223.02,0],"NameVillage","Gardez",100,100,true]
+	[[4589.77,8431.31,0],"NameVillage","Taloqan",50,50,true],
+	[[6117.45,4689.46,0],"NameVillage","Baglan",50,50,true],
+	[[5105.55,5067.6,0],"NameVillage","Balkh",50,50,true],
+	[[3333.83,352.107,0],"NameVillage","Rustaq",50,50,true],
+	[[5688.39,8228.86,0],"NameVillage","Kushk",50,50,true],
+	[[7099.19,3301.75,0],"NameCity","Balalon",100,100,true],
+	[[5533.2,9699.29,0],"NameCity","Apal",100,100,true],
+	[[3560.32,8943.58,0],"NameCity","Minanga",100,100,true],
+	[[4510.57,10122.7,0],"NameCity","Lalomo",100,100,true],
+	[[4844.45,7292.28,0],"NameCity","Kambani",100,100,true],
+	[[7257.26,7126.32,0],"NameCity","Kinandal",100,100,true]
 ];
 
 /*
@@ -39,6 +40,7 @@ btc_custom_loc = [
             "G_Shades_Green"
         ];
 */
+
 private _weapons = [
 	"OFrP_AANF1_FM",
 	"OFrP_FAMAS_F1",
@@ -91,6 +93,10 @@ private _weapons = [
 	"launch_MRAWS_sand_F",
 	"rhs_weap_m249_pip_S",
 	"rhs_weap_minimi_para_railed",
+	"rhs_weap_sr25",
+	"rhs_weap_sr25_d",
+	"rhs_weap_sr25_ec",
+	"rhs_weap_sr25_ec_d",
 	"LMG_03_F"
 ];
 
@@ -152,6 +158,9 @@ private _magazines = [
 	"ACE_HuntIR_M203",
 	"ACE_40mm_Flare_ir",
 	"Laserbatteries",
+	"rhsusf_20Rnd_762x51_SR25_m62_Mag",
+	"rhsusf_20Rnd_762x51_SR25_m993_Mag",
+	"rhsusf_20Rnd_762x51_SR25_m118_special_Mag",
 	
 	/*Mine*/
 	"APERSMineDispenser_Mag", "ACE_FlareTripMine_Mag", "DemoCharge_Remote_Mag", "rhsusf_mine_m14_mag", "ATMine_Range_Mag", "SatchelCharge_Remote_Mag", "ClaymoreDirectionalMine_Remote_Mag", "APERSBoundingMine_Range_Mag", "SLAMDirectionalMine_Wire_Mag", "Drone_Range_Mag", "TrainingMine_Mag", "APERSMine_Range_Mag",
@@ -186,13 +195,16 @@ private _items = [
 	"rhsusf_acc_acog_rmr", "optic_arco_blk_f", "optic_erco_blk_f", "rhsusf_acc_elcan", "rhsusf_acc_eotech_552", "rhsusf_acc_eotech_552_d", "rhsusf_acc_compm4", "rhsusf_acc_su230_mrds", "rhsusf_acc_eotech_xps3", "OFrP_OpticItem_AIMPoint_CompM2M68", "AMF_Aimpoint_Pro_Patrol", "AMF_Eotech_552", "AMF_EOTECH_553", "AMF_Red_Dot_Sight", "AMF_Scrome_J8", "optic_Arco_arid_F", "optic_Yorris", "optic_DMS", "optic_Aco", "optic_ACO_grn", "optic_Arco", "OFrP_OpticItem_EOTech_552", "OFrP_EOTech_Magnifier_UP", "optic_Holosight", "optic_Holosight_arid_F", "optic_MRCO", "optic_KHS_tan", "optic_Hamr", "OFrP_fake_optic_FAMAS_F1", "optic_SOS", "optic_MRD", "optic_LRPS", "optic_Nightstalker", "optic_NVS", "OFrP_OpticItem_SwordTD", "OFrP_OpticItem_Scrome_J10", "OFrP_OpticItem_Scrome_J4", "OFrP_OpticItem_Scrome_J4_Famas", "OFrP_OpticItem_Scrome_J8", "optic_ERCO_snd_F",
 
 	/*Accessoire Weapon*/
-	"AMF_AN_PEQ_15_green", "AMF_AN_PEQ_15_tan", "AMF_LASER_PIRATE", "AMF_M952_VBK_black", "AMF_M952_VBK_camo", "OFrP_fake_side_HK416F", "acc_esd_01_flashlight", "acc_flashlight_pistol", "OFrP_fake_side_FAMAS_F1", "OFrP_pointer_PIRAT_EL9A", "OFrP_pointer_PIRAT_EL9B", "acc_pointer_IR", "ACE_acc_pointer_green", "acc_flashlight_smg_01", "acc_flashlight",
+	"AMF_AN_PEQ_15_green", "AMF_AN_PEQ_15_tan", "AMF_LASER_PIRATE", "AMF_M952_VBK_black", "AMF_M952_VBK_camo", "OFrP_fake_side_HK416F", "acc_esd_01_flashlight", "acc_flashlight_pistol", "OFrP_fake_side_FAMAS_F1", "OFrP_pointer_PIRAT_EL9A", "OFrP_pointer_PIRAT_EL9B", "acc_pointer_IR", "ACE_acc_pointer_green", "acc_flashlight_smg_01", "acc_flashlight", "amf_acc_laserpirat", "amf_an_peq_15_black",
 
 	/*Silencieux*/
-	"rhsusf_acc_nt4_black", "muzzle_antenna_03_f", "muzzle_antenna_02_f", "muzzle_antenna_01_f", "OFrP_muzzle_bayonets_FAMAS", "OFrP_muzzle_bayonets_HK416F", "ACE_muzzle_mzls_338", "ACE_muzzle_mzls_smg_01", "ACE_muzzle_mzls_L", "ACE_muzzle_mzls_H", "ACE_muzzle_mzls_B", "ACE_muzzle_mzls_smg_02", "ACE_muzzle_mzls_93mmg", "muzzle_snds_acp", "muzzle_snds_M", "muzzle_snds_m_snd_F", "muzzle_snds_H", "muzzle_snds_570", "muzzle_snds_H_snd_F", "muzzle_snds_B", "muzzle_snds_B_snd_F", "muzzle_snds_B_arid_F", "muzzle_snds_L", "muzzle_snds_58_blk_F", "muzzle_snds_65_TI_blk_F", "muzzle_snds_H_MG_blk_F", "muzzle_snds_338_black", "muzzle_snds_338_sand", "bipod_02_F_arid", "bipod_01_F_mtp", "bipod_01_F_blk", "bipod_01_F_snd", "ChemicalDetector_01_tan_F", "ChemicalDetector_01_black_F", "ChemicalDetector_01_olive_F", "ofrp_acc_grip1", "rhsusf_acc_saw_bipod", "rhsusf_acc_grip4",
+	"rhsusf_acc_nt4_black", "muzzle_antenna_03_f", "muzzle_antenna_02_f", "muzzle_antenna_01_f", "OFrP_muzzle_bayonets_FAMAS", "OFrP_muzzle_bayonets_HK416F", "ACE_muzzle_mzls_338", "ACE_muzzle_mzls_smg_01", "ACE_muzzle_mzls_L", "ACE_muzzle_mzls_H", "ACE_muzzle_mzls_B", "ACE_muzzle_mzls_smg_02", "ACE_muzzle_mzls_93mmg", "muzzle_snds_acp", "muzzle_snds_M", "muzzle_snds_m_snd_F", "muzzle_snds_H", "muzzle_snds_570", "muzzle_snds_H_snd_F", "muzzle_snds_B", "muzzle_snds_B_snd_F", "muzzle_snds_B_arid_F", "muzzle_snds_L", "muzzle_snds_58_blk_F", "muzzle_snds_65_TI_blk_F", "muzzle_snds_H_MG_blk_F", "muzzle_snds_338_black", "muzzle_snds_338_sand", "bipod_02_F_arid", "bipod_01_F_mtp", "bipod_01_F_blk", "bipod_01_F_snd", "ChemicalDetector_01_tan_F", "ChemicalDetector_01_black_F", "ChemicalDetector_01_olive_F", "ofrp_acc_grip1", "rhsusf_acc_saw_bipod", "rhsusf_acc_grip4", "rhsusf_acc_aac_762sd_silencer", "rhsusf_acc_aac_762sdn6_silencer",
+
+	/*Accessoire Spectre*/
+	"acc_esd_01_flashlight", "muzzle_antenna_03_f", "muzzle_antenna_02_f", "muzzle_antenna_01_f",
 
 	/*JVN*/
-	"NVGoggles", "NVGoggles_OPFOR", "ACE_NVG_Wide", "OFrP_Lucie", "OFrP_Lucie_Mask", "OFrP_OVD"
+	"NVGoggles", "NVGoggles_OPFOR", "ACE_NVG_Wide", "OFrP_Lucie", "OFrP_Lucie_Mask", "OFrP_OVD", "ACE_NVG_Gen4", "ACE_NVG_Gen2", "ACE_NVG_Gen1", "rhsusf_ANPVS_14", "CUP_NVG_GPNVG_black", "CUP_NVG_GPNVG_Hide"
 ];
 
 private _backpacks = [
@@ -245,6 +257,7 @@ private _backpacks = [
 	"TFAR_rt1523g_big_rhs", 
 	"TFAR_rt1523g_black", 
 	"TFAR_rt1523g_rhs", 
+	"B_rhsusf_B_BACKPACK",
 	"TFAR_rt1523g_sage"
 ];
 

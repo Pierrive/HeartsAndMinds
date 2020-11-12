@@ -3,16 +3,16 @@
 Function: btc_fnc_deaf_earringing
 
 Description:
-    Fill me when you edit me !
+    Create earringing to all player in a radius of 100m.
 
 Parameters:
-    _pos - [Array]
+    _pos - Sound position source. [Array]
 
 Returns:
 
 Examples:
     (begin example)
-        _result = [] call btc_fnc_deaf_earringing;
+        [getPos (allPlayers select 0)] call btc_fnc_deaf_earringing;
     (end)
 
 Author:
@@ -25,4 +25,4 @@ params [
 ];
 
 private _players_close = allPlayers inAreaArray [_pos, 100, 100];
-[20] remoteExec ["ace_hearing_fnc_earRinging", _players_close apply {owner _x}];
+[20] remoteExecCall ["ace_hearing_fnc_earRinging", _players_close];
