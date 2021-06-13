@@ -10,7 +10,7 @@ if (hasInterface) then {btc_intro_done = [] spawn btc_fnc_intro;};
 
 if (isServer) then {
     [] call compile preprocessFileLineNumbers "core\init_server.sqf";
-	_handle = [300, 1500, 40, "safeZone", 600] execVM "SAP\initSpawnAI.sqf";
+	_handle = [300, 1500, 40, "safeZone", 300] execVM "SAP\initSpawnAI.sqf";
 	[] spawn fnc_ambianceAlive;
 };
 

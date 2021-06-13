@@ -1,0 +1,56 @@
+comment "Remove existing items";
+removeAllWeapons player;
+removeAllItems player;
+removeAllAssignedItems player;
+removeUniform player;
+removeVest player;
+removeBackpack player;
+removeHeadgear player;
+removeGoggles player;
+
+comment "Add weapons";
+player addWeapon "AMF_614_long_HK269_01_F";
+player addPrimaryWeaponItem "optic_ERCO_blk_F";
+player addPrimaryWeaponItem "30Rnd_556x45_Stanag";
+
+comment "Add containers";
+player forceAddUniform "amf_uniform_01_CE";
+player addVest "amf_smb_gr_grn";
+player addBackpack "AMF_FELIN_BACKPACK";
+
+comment "Add items to containers";
+for "_i" from 1 to 4 do {player addItemToUniform "SmokeShell";};
+for "_i" from 1 to 2 do {player addItemToUniform "HandGrenade";};
+player addItemToUniform "SmokeShellGreen";
+player addItemToVest "acc_pointer_IR";
+player addItemToVest "bipod_01_F_blk";
+player addItemToVest "B_IR_Grenade";
+for "_i" from 1 to 5 do {player addItemToVest "30Rnd_556x45_Stanag";};
+for "_i" from 1 to 10 do {player addItemToVest "1Rnd_HE_Grenade_shell";};
+for "_i" from 1 to 2 do {player addItemToBackpack "ACE_epinephrine";};
+for "_i" from 1 to 4 do {player addItemToBackpack "ACE_morphine";};
+for "_i" from 1 to 5 do {player addItemToBackpack "ACE_elasticBandage";};
+for "_i" from 1 to 10 do {player addItemToBackpack "ACE_packingBandage";};
+player addItemToBackpack "ACE_EarPlugs";
+for "_i" from 1 to 3 do {player addItemToBackpack "ACE_tourniquet";};
+player addItemToBackpack "ACE_Flashlight_XL50";
+player addItemToBackpack "ACE_microDAGR";
+player addItemToBackpack "ACE_MapTools";
+for "_i" from 1 to 3 do {player addItemToBackpack "ACE_CableTie";};
+for "_i" from 1 to 2 do {player addItemToBackpack "ACE_splint";};
+player addItemToBackpack "ACE_HuntIR_monitor";
+for "_i" from 1 to 5 do {player addItemToBackpack "30Rnd_556x45_Stanag";};
+for "_i" from 1 to 5 do {player addItemToBackpack "UGL_FlareWhite_F";};
+player addItemToBackpack "UGL_FlareRed_F";
+player addItemToBackpack "UGL_FlareGreen_F";
+player addItemToBackpack "ACE_HuntIR_M203";
+for "_i" from 1 to 5 do {player addItemToBackpack "rhs_mag_m714_White";};
+player addHeadgear "amf_felin_cover";
+
+comment "Add items";
+player linkItem "ItemMap";
+player linkItem "ItemCompass";
+player linkItem "ItemWatch";
+player linkItem "tf_anprc152";
+player linkItem "ItemGPS";
+player linkItem "ACE_NVG_Wide";

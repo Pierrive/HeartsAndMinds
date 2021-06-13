@@ -14,22 +14,19 @@ private _allPositions = [];
 
 
 if (_hunter) then {
-	_nBuilding = nearestBuilding (getpos _player);
+	_nBuilding = nearestBuilding _player;
 	_allBuildings pushBack _nBuilding;
 } else {
 	_nBuilding = nearestBuilding _pos;
-	_allBuildings pushBack _nBuilding;
+		
+	if ((_player distance2D (getPos _nBuilding)) < 1000) then {	
+		_allBuildings pushBack _nBuilding;
+	};
 };
 
 if (debug_VLR) then {diag_log format ["Function CheckHousse (1): %1 and %2 and %3", _allBuildings, (getpos (_allBuildings select 0)), _hunter]};
 
-if !(_hunter) then {
-	if ((_player distance2D (getPos _nBuilding)) > 1000) then {
-		_allBuildings deleteAt 0; 
-	};
-};
-
-if (count _allBuildings < 1) then {
+if (count _allBuildings == 0) then {
 	if (_hunter) then {
 		_allBuildings = nearestObjects [_player, ["HOUSE"], 300, false, true];
 		_allBuildings append _allBuildings;

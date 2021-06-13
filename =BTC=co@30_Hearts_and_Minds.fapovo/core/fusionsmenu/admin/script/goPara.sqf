@@ -1,0 +1,1 @@
+missionNamespace setVariable ["WaitPara", true, true];

@@ -1,5 +1,9 @@
 //inventory vehicule BOA
-player addaction ["<t size='1' shadow='2' color='#13a500'>Ajouter Item Dans Vehicule</t>", {[Pierrive_inventory_repair] execVM "scripts\AddInventoryVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_inventory_repair) < 10)"];
+player addaction ["<t size='1' shadow='2' color='#13a500'>Ajouter Item Dans Vehicule</t>", {
+	params ["_target", "_caller", "_actionId", "_arguments"];
+	[Pierrive_inventory_repair, _caller] execVM "scripts\AddInventoryVeh.sqf";
+}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_inventory_repair) < 10)"];
+
 player addaction ["<t size='1' shadow='2' color='#13a500'>Repair And Rearm Vehicle</t>", {[Pierrive_inventory_repair] execVM "scripts\repair.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_inventory_repair) < 10)"];
 player addaction ["<t size='1' shadow='2' color='#13a500'>Enlever tous les Items du Cargo</t>", {[Pierrive_inventory_repair] execVM "scripts\clearItemVehicule.sqf";}, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_inventory_repair) < 10)"];
 
@@ -15,9 +19,12 @@ player addaction ["<t size='1' shadow='2' color='#9200a5'>Configurer Pylon Vehic
 }, [], 1, false, true, "","(_this == _target) and (alive _target) and ((getposatl player distance getposatl Pierrive_inventory_repair_2) < 200)"];
 
 player addAction [
-	"Mettre marqueur sur position du désignateur",
+	"Obtenir Position Grid Map",
 	{
+
 		params ["_target", "_caller", "_actionId", "_arguments"];
+		
+		/*
 		_NameMarker = format ["%1_%2", name _caller, round ((getPosATL laserTarget _caller) select 0)];
 		_TextMarker = format ["  Marquage laser de %1", name _caller];
 		_MarkerLaser = createMarker [_NameMarker, (getPosATL laserTarget _caller)];
@@ -28,6 +35,13 @@ player addAction [
 		_MarkerLaser setMarkerSize [(((getMarkerSize _MarkerLaser) select 0) / 2),(((getMarkerSize _MarkerLaser) select 1) / 2)];
 		hint "Marquage Effectué, il sera supprimé dans 1min";
 		[_MarkerLaser] spawn {sleep 60; deleteMarker (_this select 0)};
+		*/
+		
+		_ArrayCoord = (getPosATL laserTarget _caller) call BIS_fnc_posToGrid;
+		_gridPos = mapGridPosition (getPosATL laserTarget _caller);
+		_Ncoord = _ArrayCoord select 0;
+		_ECoord = _ArrayCoord select 1;
+		hint format ["Coordonée Nord = %1 et Coordonée East = %2. Coordonée Globale = %3", _Ncoord, _ECoord, _gridPos];
 	},
 	nil,
 	6,

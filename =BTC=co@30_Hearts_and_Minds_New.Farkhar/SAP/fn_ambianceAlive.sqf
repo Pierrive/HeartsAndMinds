@@ -1,6 +1,6 @@
 if !(isServer) exitWith {};
 
-waitUntil {(count allplayers) > 2};
+waitUntil {(count allplayers) > 0};
 
 private _safezone = missionNamespace getVariable "SafeZoneVar";
 
@@ -117,7 +117,7 @@ Amb_Alive_Sound = [{
 	_ArrayAfriSings = ["africansinging", "africansong1", "africansong2", "africansong3", "drums", "drums2"];
 	private _soundAfriSings = selectRandom _ArrayAfriSings;
 		
-	_ArrayAfricanNear = ["afrgrouptalk", "afrgrouptalk2", "afrvillage1", "afrvillage2", "dog12", "dog13", "dog18", "dog19", "largedog"];
+	_ArrayAfricanNear = ["afrgrouptalk", "afrgrouptalk2", "afrvillage1", "afrvillage2"];
 	private _soundAfricanNear = selectRandom _ArrayAfricanNear;
 		
 	_ArrayAfricanFar = ["africancity", "africancity2", "africancity3", "africancity5", "africancity6", "afrvillage3", "afrvillage4", "afrvillage5", "afrvillage6", "freemarket1", "freemarket2", "freemarket3"];
@@ -144,7 +144,7 @@ Amb_Alive_Sound = [{
 	_ArrayAllNear = _ArrayAfricanNear + _ArrayMiddleEastNear;
 	private _soundAllNear = selectRandom _ArrayAllNear;	
 	
-	if ((count _humanPlayers > 0) || !(_player inArea _safeZone)) then {
+	if ((count _humanPlayers > 0) && !(_player inArea _safeZone)) then {
 		private _randomNb = round (random 100);
 		private _PosFar = [_player, 100, 200, 0, 0, 0, 0, [_safeZone], []] call BIS_fnc_findSafePos;
 		private _PosNear = [_player, 0, 50, 0, 0, 0, 0, [_safeZone], []] call BIS_fnc_findSafePos;
@@ -156,6 +156,8 @@ Amb_Alive_Sound = [{
 		private _BuildingsNear = [];
 		private _BuildingsReli = [];
 		private _allGroupFightArea = [];
+		
+		if (debug_VLR) then {diag_log format ["Function ambianceAlive (4): All Building : %1", _allBuildings]};
 		
 		if (count _allBuildings > 0) then {
 
@@ -169,19 +171,21 @@ Amb_Alive_Sound = [{
 			
 			//All Units Near Player
 			{
-				if ((side _x == btc_enemy_side) && ((getPos (leader _x)) inArea _markerScan) && (behaviour (leader _x) == "COMBAT")) then {
+				if ((side _x == btc_enemy_side) && ((getPos (leader _x)) inArea _markerScan) && ((behaviour (leader _x)) isEqualTo "COMBAT")) then {
 					_allGroupFightArea pushback _x;
 				};
-				sleep 0.1;
 			} foreach allGroups;
+			
+			if (debug_VLR) then {diag_log format ["Function ambianceAlive (5): All group : %1", _allGroupFightArea]};
 			
 			//All Building
 			{
-				if (_x in _typeHouse) then {
+				if ((typeOf _x) in _typeHouse) then {
 					_Buildings pushBack _x
 				};
-				sleep 0.1;
 			} foreach _allBuildings;
+			
+			if (debug_VLR) then {diag_log format ["Function ambianceAlive (6): Type Build Select : %1", _allBuildings]};
 			
 			if (count _allGroupFightArea < 2) then {
 
@@ -194,6 +198,8 @@ Amb_Alive_Sound = [{
 						_soundsPosUse pushBackUnique _posRandomBuildMus;	
 						_Sound = format [_pathToSound, _soundMusic];
 						playSound3D [_Sound, _randomBuildMus, false, _posRandomBuildMus, 1, 1, 200];
+						
+						if (debug_VLR) then {diag_log format ["Function ambianceAlive (7): Music Song Select : %1", _Sound]};
 					};			
 				};
 						
@@ -206,6 +212,8 @@ Amb_Alive_Sound = [{
 						_soundsPosUse pushBackUnique _posRandomBuildPets;					
 						_Sound = format [_pathToSound, _soundPets];
 						playSound3D [_Sound, _randomBuildPets, false, _posRandomBuildPets, 1, 1, 200];
+						
+						if (debug_VLR) then {diag_log format ["Function ambianceAlive (8): Pets Song Select : %1", _Sound]};
 					};
 				};	
 						
@@ -213,13 +221,12 @@ Amb_Alive_Sound = [{
 				if (((random 1) > 0.70)) then {
 					//All Building Religion Near Player
 					{
-						if (_x in _typeReligion) then {
+						if ((typeOf _x) in _typeReligion) then {
 							_BuildingsReli pushBack _x
 						};
-						sleep 0.1;
 					} foreach _allBuildings;
 					
-					sleep 1;
+					if (debug_VLR) then {diag_log format ["Function ambianceAlive (9): Building Reli : %1", _BuildingsReli]};
 					
 					if (count _BuildingsReli > 0) then {
 						_BuildingsReliClass = [_BuildingsReli, [], { _player distance2D _x }, "ASCEND"] call BIS_fnc_sortBy;
@@ -233,10 +240,15 @@ Amb_Alive_Sound = [{
 							if (_BuildingReli in _ArrayMinaret) then {
 								//Priere haut parleur						
 								_Sound = format [_pathToSoundBuildings, _soundMinaret];
-								playSound3D [_Sound, _randomBuild, false, _posRandomBuildReli, 1, 1, 500];						
+								playSound3D [_Sound, _randomBuild, false, _posRandomBuildReli, 1, 1, 500];	
+
+								if (debug_VLR) then {diag_log format ["Function ambianceAlive (10): Sound Minaret Reli : %1", _Sound]};		
+								
 							} else {	
 								_Sound = format [_pathToSoundBuildings, _soundMosquet];
-								playSound3D [_sound, _Building, false, _posRandomBuildReli, 1, 1, 200];								
+								playSound3D [_sound, _Building, false, _posRandomBuildReli, 1, 1, 200];				
+
+								if (debug_VLR) then {diag_log format ["Function ambianceAlive (11): Sound Reli : %1", _Sound]};									
 							};
 						};
 					};
@@ -245,13 +257,12 @@ Amb_Alive_Sound = [{
 				if (_randomNb >= 40) then {	
 					//All Building Far player
 					{
-						if (_x in _typeHouse) then {
+						if ((typeOf _x) in _typeHouse) then {
 							_BuildingsFar pushBack _x
 						};
-						sleep 0.1;
 					} foreach _allBuildingsFar;				
 
-					sleep 1;
+					if (debug_VLR) then {diag_log format ["Function ambianceAlive (12): All Building Far : %1", _allBuildingsFar]};		
 
 					//Ambiance Sound on housse 100m to the player
 					if (count _BuildingsFar > 0) then {
@@ -269,10 +280,14 @@ Amb_Alive_Sound = [{
 								//Day Time
 								if (_soundAllFar in _ArrayAfricanFar) then {
 									_Sound = format [_pathToSoundAfrican, _soundAllFar];
-									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];		
+									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];
+
+									if (debug_VLR) then {diag_log format ["Function ambianceAlive (13): Sound Far : %1", _sound]};											
 								} else {
 									_Sound = format [_pathToSoundMiddleEast, _soundAllFar];
-									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];									
+									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];			
+
+									if (debug_VLR) then {diag_log format ["Function ambianceAlive (14): Sound Far : %1", _sound]};											
 								};
 							};
 						};
@@ -280,13 +295,12 @@ Amb_Alive_Sound = [{
 				} else {
 					//All Building Near player
 					{
-						if (_x in _typeHouse) then {
+						if ((typeOf _x) in _typeHouse) then {
 							_BuildingsNear pushBack _x
 						};
-						sleep 0.1;
 					} foreach _allBuildingsNear;
 					
-					sleep 1;
+					if (debug_VLR) then {diag_log format ["Function ambianceAlive (15): All Building Near : %1", _BuildingsNear]};		
 					
 					if (count _BuildingsNear > 0) then {
 						_BuildingsClass = [_BuildingsNear, [], { _player distance2D _x }, "ASCEND"] call BIS_fnc_sortBy;
@@ -301,12 +315,16 @@ Amb_Alive_Sound = [{
 								playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];
 							} else {
 								//Day Time
-								if (_soundAllNear in _ArrayAfricanFar) then {
+								if (_soundAllNear in _ArrayAfricanNear) then {
 									_Sound = format [_pathToSoundAfrican, _soundAllNear];
-									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];		
+									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];
+									
+									if (debug_VLR) then {diag_log format ["Function ambianceAlive (16): Sound Near : %1", _sound]};										
 								} else {
 									_Sound = format [_pathToSoundMiddleEast, _soundAllNear];
-									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];									
+									playSound3D [_sound, _Building, false, _posRandomBuild, 1, 1, 300];	
+
+									if (debug_VLR) then {diag_log format ["Function ambianceAlive (17): Sound Near : %1", _sound]};										
 								};
 							};
 						};
@@ -322,6 +340,8 @@ Amb_Alive_Sound = [{
 						_soundsPosUse pushBackUnique _posRandomBuildPets;					
 						_Sound = format [_pathToSound, _soundPets];
 						playSound3D [_Sound, _randomBuildPets, false, _posRandomBuildPets, 1, 1, 200];
+						
+						if (debug_VLR) then {diag_log format ["Function ambianceAlive (18): Pets Song Select : %1", _Sound]};
 					};
 				};						
 
@@ -331,10 +351,13 @@ Amb_Alive_Sound = [{
 					private _posRandomBuildFight = getPosASL _BuildingFight;	
 						
 					if !(_posRandomBuildFight in _soundsPosUse) then {						
-						_soundsPosUse pushBackUnique _posRandomBuildFight;	
+						_soundsPosUse pushBackUnique _posRandomBuildFight;
+						
 						//fear Song
 						_Sound = format [_pathToSoundFear, _soundFear];
-						playSound3D [_Sound, _Building, false, getPosASL _Building, 1, 1, 300];
+						playSound3D [_Sound, _BuildingFight, false, _posRandomBuildFight, 1, 1, 100];
+						
+						if (debug_VLR) then {diag_log format ["Function ambianceAlive (19): Fear Song Select : %1", _Sound]};
 					};	
 				};				
 			};

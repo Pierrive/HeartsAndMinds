@@ -1,0 +1,43 @@
+removeAllWeapons player;
+removeAllItems player;
+removeUniform player;
+removeVest player;
+removeBackpack player;
+removeHeadgear player;
+removeGoggles player;
+
+comment "Add containers";
+player forceAddUniform "R3F_uniform_urr_medic_DA";
+for "_i" from 1 to 4 do {player addItemToUniform "SmokeShell";};
+player addItemToUniform "SmokeShellGreen";
+player addVest "R3F_veste_APSO_EOD_TAN";
+for "_i" from 1 to 2 do {player addItemToVest "HandGrenade";};
+player addItemToVest "B_IR_Grenade";
+player addItemToVest "acc_pointer_IR";
+player addItemToVest "R3F_BIPIED_HK417";
+for "_i" from 1 to 2 do {player addItemToVest "R3F_30Rnd_556x45_HK416";};
+for "_i" from 1 to 3 do {player addItemToVest "R3F_30Rnd_556x45_TRACER_HK416";};
+player addBackpack "R3F_sac_moyen_TAN";
+for "_i" from 1 to 10 do {player addItemToBackpack "ACE_epinephrine";};
+for "_i" from 1 to 15 do {player addItemToBackpack "ACE_morphine";};
+for "_i" from 1 to 10 do {player addItemToBackpack "ACE_quikclot";};
+for "_i" from 1 to 25 do {player addItemToBackpack "ACE_elasticBandage";};
+for "_i" from 1 to 25 do {player addItemToBackpack "ACE_packingBandage";};
+for "_i" from 1 to 8 do {player addItemToBackpack "adv_aceSplint_splint";};
+for "_i" from 1 to 10 do {player addItemToBackpack "ACE_salineIV";};
+player addItemToBackpack "ACE_surgicalKit";
+player addItemToBackpack "ACE_EarPlugs";
+for "_i" from 1 to 8 do {player addItemToBackpack "ACE_tourniquet";};
+player addItemToBackpack "ACE_Flashlight_XL50";
+player addItemToBackpack "ACE_microDAGR";
+player addItemToBackpack "ACE_MapTools";
+for "_i" from 1 to 3 do {player addItemToBackpack "ACE_CableTie";};
+player addHeadgear "H_HelmetSpecB_paint2";
+
+comment "Add weapons";
+player addWeapon "R3F_HK416M_HG";
+player addPrimaryWeaponItem "optic_Hamr";
+
+comment "Add Radio";
+player linkItem "tf_anprc152";
+["tf_anprc152", 1, "30"] call TFAR_fnc_SetChannelFrequency;

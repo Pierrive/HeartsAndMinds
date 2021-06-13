@@ -14,9 +14,10 @@ while {true} do {
 	
 	if !(_safeZone isEqualTo "") then {
 		if !({alive _x} count _humanPlayers == {alive _x && _x inArea _safeZone} count _humanPlayers) then {
-			_player = selectRandom _humanPlayers;
-			_AInearPlayer = [_player, _maxRadius] call fnc_countAI;
-			_typeSpawn = [] call fnc_checkTypeSpawn;
+			private _player = selectRandom _humanPlayers;
+			private _AInearPlayer = [_player, _maxRadius] call fnc_countAI;
+			private _typeSpawn = [] call fnc_checkTypeSpawn;
+			if (debug_VLR) then {diag_log format ["Function initSpawnAI (1): player : %1, Nombre AI near : %2, type de spawn : %3", (name _player), _AInearPlayer, _typeSpawn]};
 			
 			private _arrayPos = [];
 			if (_typeSpawn isEqualTo "Men") then {
@@ -32,11 +33,11 @@ while {true} do {
 				if (count _AInearPlayer < _maxAi) then {
 					if !((getpos _player) inArea _safeZone) then {
 						switch (_typeSpawn) do {
-							case "Men"; {[_pos,_player,_safeZone] call fnc_randomFootPlayer};
-							case "Air": {[_pos,_player,_safeZone] call fnc_randomAirPlayer};
-							case "Tank"; {[_pos,_player,_safeZone] call fnc_randomVehPlayer};
-							case "Car": {[_pos,_player,_safeZone] call fnc_randomVehPlayer};
-							default {[_pos,_player,_safeZone] call fnc_randomFootPlayer};
+							case "Men" : {diag_log "Men"; [_pos,_player,_safeZone] call fnc_randomFootPlayer};
+							case "Air" : {diag_log "Air"; [_pos,_player,_safeZone] call fnc_randomAirPlayer};
+							case "Tank" : {diag_log "Tank"; [_pos,_player,_safeZone] call fnc_randomVehPlayer};
+							case "Car" : {diag_log "Car"; [_pos,_player,_safeZone] call fnc_randomVehPlayer};
+							default {diag_log "default"; [_pos,_player,_safeZone] call fnc_randomFootPlayer};
 						};		
 					};
 				};

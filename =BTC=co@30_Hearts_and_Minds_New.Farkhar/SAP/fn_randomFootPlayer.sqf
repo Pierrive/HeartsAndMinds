@@ -55,7 +55,7 @@ if ((_randomEvent > 15) && (_randomEvent < 22)) then {
 		private _grp = [vlr_class_units, 1, _spawnpos] call fnc_spawnGrpUnits;
 		private _unitKam = (units _grp) select 0;
 		[_unitKam, false] call fnc_typeKam;	
-		[_unitKam, _vehicle, _player, _safeZone] spawn fnc_addWPKam;
+		[_unitKam, "", _player, _safeZone] spawn fnc_addWPKam;
 	};
 };
 

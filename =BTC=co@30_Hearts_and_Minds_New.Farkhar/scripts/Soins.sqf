@@ -40,5 +40,4 @@ if (_count == 0) exitwith {hint "No Player Nearby"};
 			sleep 5;
 		};
 	};
-	sleep 0.1;
 } foreach _nearestMens;
